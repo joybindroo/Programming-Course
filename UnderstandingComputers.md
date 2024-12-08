@@ -54,6 +54,11 @@ The digital revolution marked a significant shift from analog to digital computi
 
 The development of electronic components, particularly transistors and integrated circuits, revolutionized computing. These advancements led to smaller, faster, and more reliable computers.
 
+**Relay Computer:**<br>
+<img src="https://github.com/user-attachments/assets/e9924874-8dba-42cd-b22c-87607b9130f4" width=300><br>
+Relay computers were early electronic computers that used electromechanical relays to store and process information. Relays are switches that open and close electrical circuits, representing binary digits (0s and 1s). These computers were large, slow, and power-hungry compared to modern computers. However, they were a significant step forward from mechanical calculators and laid the foundation for future electronic computers. While relay computers were eventually superseded by transistor-based computers, they played a crucial role in the history of computing.
+
+<br><br>
 **Early Electronic Computers:**
 
 * **[ENIAC](https://en.wikipedia.org/wiki/ENIAC) (Electronic Numerical Integrator and Computer):** One of the earliest electronic general-purpose computers, ENIAC was a massive machine that used vacuum tubes.
@@ -82,6 +87,8 @@ While the hardware has evolved significantly, the fundamental principles of prog
 As computers became more complex, higher-level programming languages were developed to make programming more efficient and human-readable. 
 
 * **Assembly Language:** A low-level language that uses mnemonics to represent machine instructions.
+* ![image](https://github.com/user-attachments/assets/0fba0ca0-3fa1-43ca-bf9e-fb7328596398)
+
 * **High-Level Languages:** Languages like C, C++, Java, and Python, which are closer to human language and easier to understand.
 
 Despite the evolution of programming languages, the core concept of breaking down complex problems into smaller, manageable steps and expressing those steps in a precise and logical manner remains the same.
