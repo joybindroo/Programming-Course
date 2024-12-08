@@ -2,8 +2,9 @@
 
 ## How Computers Work: A Basic Overview
 
-A computer is a sophisticated electronic machine that follows a set of instructions to perform tasks. At its core, it consists of hardware and software components.
+A computer is a sophisticated electronic machine that follows a set of instructions to perform tasks. 
 <img src="https://github.com/user-attachments/assets/029fc737-f1b2-423d-872a-d62e3556d85c" width=200>
+At its core, it consists of hardware and software components.
 ## The Evolution of Computing: From Mechanical Marvels to Digital Dominance*
 
 ### Early Computing Machines: Mechanical Forerunners
