@@ -43,9 +43,11 @@ The digital revolution marked a significant shift from analog to digital computi
 **Turing Machine:** A theoretical device proposed by Alan Turing, the Turing machine is a simple model of computation that can perform any computation. It consists of a tape, a head, and a set of states. The Turing machine's concept laid the foundation for modern computer science and the theory of computation.
 
 **Von Neumann Architecture:** A fundamental design for digital computers, the Von Neumann architecture consists of four main components:
-![image](https://github.com/user-attachments/assets/54eda6f1-2c6b-4a3c-b4dc-f1eca9b76f2d)
+<img src="https://github.com/user-attachments/assets/54eda6f1-2c6b-4a3c-b4dc-f1eca9b76f2d" width=450>
 
 1. **Central Processing Unit (CPU):** The "brain" of the computer, responsible for executing instructions.
+<img src="https://github.com/user-attachments/assets/d844519a-fafb-425f-9107-823439174fd5" width=250>
+
 2. **Memory:** Stores data and instructions.
 3. **Input Devices:** Devices used to input data into the computer (e.g., keyboard, mouse).
 4. **Output Devices:** Devices used to display or output data (e.g., monitor, printer).
