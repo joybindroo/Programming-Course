@@ -7,6 +7,8 @@ A computer is a sophisticated electronic machine that follows a set of instructi
 <img src="https://github.com/user-attachments/assets/029fc737-f1b2-423d-872a-d62e3556d85c" width=200>
 
 <img src="https://github.com/user-attachments/assets/a9898458-aa4e-4a96-a615-684a24671198" width=200>
+<img src="https://github.com/user-attachments/assets/425e17ac-8994-4cbf-85e5-0f9061cf173f" width=200>
+
 
 At its core, it consists of hardware and software components.
 ## The Evolution of Computing: From Mechanical Marvels to Digital Dominance*
