@@ -11,7 +11,7 @@
   <div id="readme-content"></div>
   <script>
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'readme.md', true);
+    xhr.open('GET', 'https://joybindroo.github.io/Programming-Course/readme.md', true);
     xhr.onload = function () {
       if (xhr.status === 200) {
         const content = marked(xhr.responseText);
