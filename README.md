@@ -2,7 +2,7 @@
 
 ## **Module 1: Foundations of Computer Science**
 
-* **Understanding Computers:**
+* [**Understanding Computers:**]('./UnderstandingComputers.md')
     * How computers work: A basic overview
     * Binary number system and its significance
 * **Introduction to Algorithms:**
