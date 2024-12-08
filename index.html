@@ -1,26 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Readme Content</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.18/marked.min.js"></script>
+    <title>A Comprehensive Programming Course</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
-  <h1>Readme Content</h1>
-  <div id="readme-content"></div>
-  <script>
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://joybindroo.github.io/Programming-Course/README.md', true);
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        const content = marked(xhr.responseText);
-        document.getElementById('readme-content').innerHTML = content;
-      } else {
-        console.error('Error fetching README.md');
-      }
-    };
-    xhr.send();
-  </script>
+    <h1>A Comprehensive Programming Course: From Novice to Expert</h1>
+
+    <h2>Module 1: Foundations of Computer Science</h2>
+    <ul>
+        <li>Understanding Computers</li>
+        <ul>
+            <li>How computers work: A basic overview</li>
+            <li>Binary number system and its significance</li>
+        </ul>
+        <li>Introduction to Algorithms</li>
+        <ul>
+            <li>Defining algorithms and their role in programming</li>
+            <li>Problem-solving techniques: Breaking down problems into smaller steps</li>
+            <li>Flowcharts and pseudocode: Visualizing and representing algorithms</li>
+        </ul>
+        <li>Data Structures</li>
+        <ul>
+            <li>Basic data structures: Arrays, lists, stacks, queues</li>
+            <li>Understanding data relationships and their applications</li>
+        </ul>
+    </ul>
+
+    <p><strong>Note:**</p>
+    <ul>
+        <li>Language-Agnostic Approach: While specific programming languages (like Python, Java, C++) will be used to implement concepts, the focus will be on understanding the underlying principles.</li>
+        <li>Problem-Solving and Practical Applications: Numerous coding challenges and real-world projects will be incorporated to reinforce learning. Debugging techniques and best practices will be emphasized.</li>
+        <li>Continuous Learning and Community Engagement: Encourage learners to explore additional resources and participate in online communities. Foster a collaborative learning environment.</li>
+    </ul>
+
+    <p>By following this comprehensive course structure, learners will develop a solid foundation in computer science and programming, enabling them to tackle complex problems and build innovative solutions.</p>
 </body>
 </html>
