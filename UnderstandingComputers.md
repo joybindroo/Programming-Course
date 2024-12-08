@@ -56,8 +56,12 @@ The development of electronic components, particularly transistors and integrate
 
 **Early Electronic Computers:**
 
-* **ENIAC (Electronic Numerical Integrator and Computer):** One of the earliest electronic general-purpose computers, ENIAC was a massive machine that used vacuum tubes.
+* **[ENIAC](https://en.wikipedia.org/wiki/ENIAC) (Electronic Numerical Integrator and Computer):** One of the earliest electronic general-purpose computers, ENIAC was a massive machine that used vacuum tubes.
+  ![image](https://github.com/user-attachments/assets/fb1efa48-4f88-4344-b05f-38cf84f72fe1)
+
 * **Transistor-Based Computers:** The invention of transistors led to smaller, more reliable, and more energy-efficient computers.
+  ![image](https://github.com/user-attachments/assets/97103bc0-165f-4fee-bdf5-a7142aa905e8)
+
 
 ### The Impact of Moore's Law
 
