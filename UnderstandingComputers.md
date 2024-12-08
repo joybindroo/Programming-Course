@@ -4,22 +4,23 @@
 
 A computer is a sophisticated electronic machine that follows a set of instructions to perform tasks. 
 
-<img src="https://github.com/user-attachments/assets/029fc737-f1b2-423d-872a-d62e3556d85c" width=200 height=250>
+<img src="https://github.com/user-attachments/assets/029fc737-f1b2-423d-872a-d62e3556d85c" width=150 height=150>
 Desktop Computer
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<img src="https://github.com/user-attachments/assets/a9898458-aa4e-4a96-a615-684a24671198" width=200 height=250>
+<br>
+<img src="https://github.com/user-attachments/assets/a9898458-aa4e-4a96-a615-684a24671198" width=150 height=150>
 Chips, Circuits & other electronic components.
 
 <br>
-<img src="https://github.com/user-attachments/assets/425e17ac-8994-4cbf-85e5-0f9061cf173f" width=200 height=250>
+<img src="https://github.com/user-attachments/assets/425e17ac-8994-4cbf-85e5-0f9061cf173f" width=150 height=150>
 Assembly Language
+<br>
 
-
-<img src="https://github.com/user-attachments/assets/027ef9bd-b1b1-45f1-b31d-f29a6a3e8fe1" width=200 height=250>
+<img src="https://github.com/user-attachments/assets/027ef9bd-b1b1-45f1-b31d-f29a6a3e8fe1" width=150 height=150>
 C Program
 
 <br>
-<img src="https://github.com/user-attachments/assets/279ce84a-06c8-4375-91e6-387aee9cb25b" width=200 height=250>
+<img src="https://github.com/user-attachments/assets/279ce84a-06c8-4375-91e6-387aee9cb25b" width=150 height=150>
+GUI Window
 <br>
 At its core, it consists of hardware and software components.
 
