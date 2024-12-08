@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Readme Content</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.18/marked.min.js"></script>
+</head>
+<body>
+  <h1>Readme Content</h1>
+  <div id="readme-content"></div>
+  <script>
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'readme.md', true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        const content = marked(xhr.responseText);
+        document.getElementById('readme-content').innerHTML = content;
+      } else {
+        console.error('Error fetching README.md');
+      }
+    };
+    xhr.send();
+  </script>
+</body>
+</html>
