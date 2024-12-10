@@ -1,4 +1,4 @@
-# A Comprehensive Programming Course: From Novice to Expert
+# A Comprehensive Computer Science & Programming Course: From Novice to Expert
 
 ## **Module 1: Foundations of Computer Science**
 
