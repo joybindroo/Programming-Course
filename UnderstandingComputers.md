@@ -4,10 +4,10 @@
 
 A computer is a sophisticated electronic machine that follows a set of instructions to perform tasks. 
 
-<img src="https://github.com/user-attachments/assets/029fc737-f1b2-423d-872a-d62e3556d85c" width=150 height=150>
+<img src="https://github.com/user-attachments/assets/029fc737-f1b2-423d-872a-d62e3556d85c" width=250 height=150>
 Desktop Computer
 <br>
-<img src="https://github.com/user-attachments/assets/a9898458-aa4e-4a96-a615-684a24671198" width=150 height=150>
+<img src="https://github.com/user-attachments/assets/332d5c7f-57e4-43bd-9ef7-29c86ec99ab2"  width=250 height=150>
 Chips, Circuits & other electronic components.
 
 <br>
