@@ -18,15 +18,15 @@ Chips, Circuits & other electronic components.
 Assembly Language
 <br><br><br>
 
-<img src="https://github.com/user-attachments/assets/027ef9bd-b1b1-45f1-b31d-f29a6a3e8fe1" width=350>
+<img src="https://github.com/user-attachments/assets/027ef9bd-b1b1-45f1-b31d-f29a6a3e8fe1" width=350><br>
 C Program
 
 <br><br><br>
-<img src="https://github.com/user-attachments/assets/279ce84a-06c8-4375-91e6-387aee9cb25b" width=150 height=150>
+<img src="https://github.com/user-attachments/assets/279ce84a-06c8-4375-91e6-387aee9cb25b" width=350>
 GUI Window
 <br><br><br>
-At its core, it consists of hardware and software components.
-
+## _At its core, Computer consists of hardware and software components._
+<br><br><br>
 
 
 ## The Evolution of Computing: From Mechanical Marvels to Digital Dominance*
