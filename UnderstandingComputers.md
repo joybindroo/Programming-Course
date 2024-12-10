@@ -6,9 +6,16 @@ A computer is a sophisticated electronic machine that follows a set of instructi
 
 <img src="https://github.com/user-attachments/assets/029fc737-f1b2-423d-872a-d62e3556d85c" width=250 ><br>
 Desktop Computer
+- A desktop computer is a personal computing device designed to fit on top of a typical office desk.
 <br><br><br>
 <img src="https://github.com/user-attachments/assets/fb7d4594-4d2c-410f-8283-f41ba24991d3" width=250 ><br>
-Laptop
+
+Laptop 
+- A laptop is a compact and portable personal computer. It is designed to be lightweight and easy to carry, allowing users to perform computing tasks on the go.
+<br>
+
+![image](https://github.com/user-attachments/assets/f7a16096-233c-43b0-bf9c-536c6142cc8c)
+
 <br><br><br>
 <img src="https://github.com/user-attachments/assets/332d5c7f-57e4-43bd-9ef7-29c86ec99ab2"  width=250 height=150><br>
 Chips, Circuits & other electronic components.
@@ -29,15 +36,24 @@ GUI Window
 <br><br><br>
 
 
-## The Evolution of Computing: From Mechanical Marvels to Digital Dominance*
+## The Evolution of Computing: From Mechanical to Electronics/Digital*
 
-### Early Computing Machines: Mechanical Forerunners
+### Early Computing Machines: Mechanical Devices
 
 Before the advent of electronic computers, mechanical devices were used to perform calculations. Notable examples include:
 
-* **Abacus:** An ancient counting tool that used beads to represent numbers.
-* **Slide Rule:** A mechanical analog computer used for multiplication and division.
-* **Charles Babbage's Analytical Engine:** A conceptual design for a mechanical general-purpose computer, considered one of the earliest examples of a programmable computing device.
+* **Abacus:** An ancient counting tool that used beads to represent numbers.<br>
+<img src="https://github.com/user-attachments/assets/defb894e-dbe7-4a58-8060-5c7afc061f6a", width=300>
+<br>
+
+- **Slide Rule:** A mechanical analog computer used for multiplication and division.<br>
+
+<img src="https://github.com/user-attachments/assets/8d59e6c4-88bd-4f4d-be1b-f98942e6de24", width=300>
+
+* **Charles Babbage's Analytical Engine:** A conceptual design for a mechanical general-purpose computer, considered one of the earliest examples of a programmable computing device.<br>
+<img src="https://github.com/user-attachments/assets/76c5f10d-3485-4144-90b4-f57634b0321c", width=300>
+<br><br>
+
 
 ### The Digital Revolution: The Birth of Modern Computing
 
