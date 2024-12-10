@@ -49,6 +49,7 @@ The digital revolution marked a significant shift from analog to digital computi
 1. **Memory:** Stores data and instructions.<br><img src="https://github.com/user-attachments/assets/4e76271e-db2a-4d27-a83a-2d010c984a2f" width=250>
 
 1. **Input Devices:** Devices used to input data into the computer (e.g., keyboard, mouse).
+   <img src="https://github.com/user-attachments/assets/6ab170e1-375e-4ecf-9094-33280a7fa194" width=250>
 1. **Output Devices:** Devices used to display or output data (e.g., monitor, printer).
 
 ### The Rise of Electronic Computers
