@@ -1,94 +1,359 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comprehensive Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.6;
+            letter-spacing: 0.01em;
         }
 
-        h1, h2 {
-            color: #333;
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 15% 20%, rgba(245, 163, 47, 0.18), transparent 45%),
+                        radial-gradient(circle at 75% 0%, rgba(67, 213, 210, 0.12), transparent 40%);
+            z-index: -1;
         }
 
-        ul {
-            list-style-type: disc;
-            padding-left: 20px;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        main {
+            width: min(1200px, 90vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        header.hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            margin: 0 0 1rem;
+        }
+
+        header.hero p.description {
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 1.8rem;
+            border-radius: 999px;
+            font-weight: 600;
+            border: 1px solid transparent;
+            transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+        }
+
+        .btn.primary {
+            background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+            color: #06090f;
+            box-shadow: 0 12px 35px rgba(241, 92, 44, 0.35);
+        }
+
+        .btn.secondary {
+            border-color: var(--outline);
+            color: var(--text);
+            background: transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        section {
+            margin-top: 4rem;
+        }
+
+        h2.section-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .module-card {
+            background: var(--card);
+            border: 1px solid var(--outline);
+            border-radius: 22px;
+            padding: 1.75rem;
+            position: relative;
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            box-shadow: 0 20px 45px rgba(6, 9, 25, 0.45);
+            transition: transform 220ms ease;
+        }
+
+        .module-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(246, 162, 39, 0.15), transparent 55%);
+            pointer-events: none;
+        }
+
+        .module-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .module-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .module-card h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .module-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .module-card li {
+            padding-left: 1.4rem;
+            position: relative;
+            margin-bottom: 0.4rem;
+            font-size: 0.98rem;
+        }
+
+        .module-card li::before {
+            content: "";
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 50%;
+            background: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+        }
+
+        .module-link {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .module-link::after {
+            content: "↗";
+            font-size: 1rem;
+        }
+
+        .notes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+        }
+
+        .note-card {
+            background: var(--panel);
+            border-radius: 18px;
+            padding: 1.4rem;
+            border: 1px solid var(--outline);
+        }
+
+        .cta {
+            margin-top: 5rem;
+            padding: 3rem;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(246, 162, 39, 0.18), rgba(0, 112, 122, 0.25));
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0 3rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            header.hero {
+                padding-top: 4rem;
+            }
+
+            .module-card {
+                min-height: unset;
+            }
+
+            .cta {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>Comprehensive Programming Course</h1>
+    <header class="hero">
+        <p class="eyebrow">Self-paced curriculum</p>
+        <h1>Comprehensive Programming Course</h1>
+        <p class="description">A structured journey from first principles to advanced software topics. Navigate the modules below, dive into detailed study guides, and build a resilient engineering mindset.</p>
+        <div class="hero-actions">
+            <a class="btn primary" href="#modules">Explore Modules</a>
+            <a class="btn secondary" href="README.md">Full syllabus (Markdown)</a>
+        </div>
+    </header>
 
-    <h2>Module 1: Foundations of Computer Science</h2>
-    <ul>
-        <li>Understanding Computers</li>
-        <ul>
-            <li>How computers work: A basic overview</li>
-            <li>Binary number system and its significance</li>
-        </ul>
-        <li>Introduction to Algorithms</li>
-        <ul>
-            <li>Defining algorithms and their role in programming</li>
-            <li>Problem-solving techniques: Breaking down problems into smaller steps</li>
-            <li>Flowcharts and pseudocode: Visualizing and representing algorithms</li>
-        </ul>
-        <li>Data Structures</li>
-        <ul>
-            <li>Basic data structures: Arrays, lists, stacks, queues</li>
-            <li>Understanding data relationships and their applications</li>
-        </ul>
-    </ul>
+    <main>
+        <section id="modules">
+            <h2 class="section-title">Module Roadmap</h2>
+            <div class="module-grid">
+                <article class="module-card">
+                    <span class="module-label">Module 1</span>
+                    <h3>Foundations of Computer Science</h3>
+                    <p>Gain fluency with the hardware/software stack and core algorithmic thinking.</p>
+                    <ul>
+                        <li>How computers work + binary systems</li>
+                        <li>Algorithm design, flowcharts, pseudocode</li>
+                        <li>Essential data structures</li>
+                    </ul>
+                    <a class="module-link" href="Module1-UnderstandingComputers.md">View module guide</a>
+                </article>
 
-    <h2>Module 2: Programming Fundamentals</h2>
-    <ul>
-        <li>Variables and Data Types</li>
-        <li>Control Flow</li>
-        <li>Functions</li>
-        <li>Input and Output</li>
-    </ul>
+                <article class="module-card">
+                    <span class="module-label">Module 2</span>
+                    <h3>Programming Fundamentals</h3>
+                    <p>Build solid habits with variables, control flow, functions, and I/O.</p>
+                    <ul>
+                        <li>Primitive & composite data types</li>
+                        <li>Branching, loops, and logic</li>
+                        <li>Function design + console I/O</li>
+                    </ul>
+                    <a class="module-link" href="Module2-Programming-Fundamentals.md">View module guide</a>
+                </article>
 
-    <h2>Module 3: Object-Oriented Programming (OOP)</h2>
-    <ul>
-        <li>Core Concepts of OOP</li>
-        <ul>
-            <li>Classes and objects</li>
-            <li>Encapsulation</li>
-            <li>Inheritance</li>
-            <li>Polymorphism</li>
-        </ul>
-        <li>Designing Object-Oriented Systems</li>
-    </ul>
+                <article class="module-card">
+                    <span class="module-label">Module 3</span>
+                    <h3>Object-Oriented Programming</h3>
+                    <p>Model real systems via classes, encapsulation, inheritance, and polymorphism.</p>
+                    <ul>
+                        <li>Class design patterns</li>
+                        <li>Encapsulation & information flow</li>
+                        <li>Inheritance + polymorphic behavior</li>
+                    </ul>
+                    <a class="module-link" href="Module3-OOP.md">View module guide</a>
+                </article>
 
-    <h2>Module 4: Data Structures and Algorithms</h2>
-    <ul>
-        <li>Arrays and Strings</li>
-        <li>Linked Lists</li>
-        <li>Stacks and Queues</li>
-        <li>Trees and Graphs</li>
-        <li>Recursion</li>
-    </ul>
+                <article class="module-card">
+                    <span class="module-label">Module 4</span>
+                    <h3>Data Structures & Algorithms</h3>
+                    <p>Level up with linked lists, trees, graphs, recursion, and complexity tradeoffs.</p>
+                    <ul>
+                        <li>Arrays, strings, and hash-friendly data</li>
+                        <li>Linked lists, stacks, queues</li>
+                        <li>Trees, graphs, and traversal patterns</li>
+                    </ul>
+                    <a class="module-link" href="Module4-Data-Structures-and-Algorithms.md">View module guide</a>
+                </article>
 
-    <h2>Module 5: Advanced Topics</h2>
-    <ul>
-        <li>File I/O</li>
-        <li>Exception Handling</li>
-        <li>Concurrency and Parallelism</li>
-        <li>Design Patterns</li>
-        <li>Web Development</li>
-        <li>Mobile App Development</li>
-        <li>Game Development</li>
-        <li>Machine Learning and Artificial Intelligence</li>
-    </ul>
+                <article class="module-card">
+                    <span class="module-label">Module 5</span>
+                    <h3>Advanced Topics</h3>
+                    <p>Practice production-ready skills spanning systems, architecture, and ML.</p>
+                    <ul>
+                        <li>File I/O + defensive exception handling</li>
+                        <li>Concurrency, patterns, and web/mobile</li>
+                        <li>Game dev plus ML & AI basics</li>
+                    </ul>
+                    <a class="module-link" href="Module5-Advanced-Topics.md">View module guide</a>
+                </article>
+            </div>
+        </section>
 
-    <p><strong>Note:**</p>
-    <ul>
-        <li>Language-Agnostic Approach: While specific programming languages (like Python, Java, C++) will be used to implement concepts, the focus will be on understanding the underlying principles.</li>
-        <li>Problem-Solving and Practical Applications: Numerous coding challenges and real-world projects will be incorporated to reinforce learning. Debugging techniques and best practices will be emphasized.</li>
-        <li>Continuous Learning and Community Engagement: Encourage learners to explore additional resources and participate in online communities. Foster a collaborative learning environment.</li>
-    </ul>
+        <section class="notes">
+            <h2 class="section-title">Learning Principles</h2>
+            <div class="notes-grid">
+                <div class="note-card">
+                    <h3>Language-Agnostic Mindset</h3>
+                    <p>We lean on Python, Java, or C++ when examples demand it, but the real goal is to master transferable mental models.</p>
+                </div>
+                <div class="note-card">
+                    <h3>Practice & Projects</h3>
+                    <p>Each module encourages coding drills, debugging reps, and real scenarios so concepts move from theory to instinct.</p>
+                </div>
+                <div class="note-card">
+                    <h3>Community & Momentum</h3>
+                    <p>Join meetups, study groups, or forums to accelerate feedback loops and keep curiosity alive beyond this syllabus.</p>
+                </div>
+            </div>
+        </section>
 
-    <p>By following this comprehensive course structure, learners will develop a solid foundation in computer science and programming, enabling them to tackle complex problems and build innovative solutions.</p>
+        <section class="cta">
+            <h2>Ready to start building?</h2>
+            <p>Kick off with Module 1 or jump to the guide that aligns with your current skill level. Revisit modules as reference chapters whenever you need a refresher.</p>
+            <div class="hero-actions" style="margin-top: 1.5rem;">
+                <a class="btn primary" href="Module1-UnderstandingComputers.md">Start with Foundations</a>
+                <a class="btn secondary" href="README.md">Download syllabus (Markdown)</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Built for aspiring engineers. Hosted on GitHub Pages.
+    </footer>
 </body>
 </html>

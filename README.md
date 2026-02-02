@@ -2,7 +2,7 @@
 
 ## **Module 1: Foundations of Computer Science**
 
-* [**Understanding Computers:**](./UnderstandingComputers.md)
+* [**Understanding Computers:**](./Module1-UnderstandingComputers.md)
     * How computers work: A basic overview
     * Binary number system and its significance
 * **Introduction to Algorithms:**
@@ -14,6 +14,8 @@
     * Understanding data relationships and their applications
 
 ## **Module 2: Programming Fundamentals**
+
+[**Programming Fundamentals**](./Module2-Programming-Fundamentals.md)
 
 * **Variables and Data Types:**
     * Declaring and assigning variables
@@ -31,6 +33,8 @@
 
 ## **Module 3: Object-Oriented Programming (OOP)**
 
+[**Object-Oriented Programming**](./Module3-OOP.md)
+
 * **Core Concepts of OOP:**
     * Classes and objects: Building blocks of OOP
     * Encapsulation: Data hiding and information protection
@@ -42,6 +46,8 @@
     * Creating class diagrams
 
 ## **Module 4: Data Structures and Algorithms**
+
+[**Data Structures and Algorithms**](./Module4-Data-Structures-and-Algorithms.md)
 
 * **Arrays and Strings:**
     * Array operations: Searching, sorting, manipulation
@@ -60,6 +66,8 @@
     * Recursive algorithms: Factorial, Fibonacci, Tower of Hanoi
 
 ## **Module 5: Advanced Topics**
+
+[**Advanced Topics**](./Module5-Advanced-Topics.md)
 
 * **File I/O:**
     * Reading from and writing to files
