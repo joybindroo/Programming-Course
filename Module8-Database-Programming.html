@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 8: Database Programming &amp; Tooling | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 8</p>
+            <h1>Module 8: Database Programming &amp; Tooling</h1>
+            <p class="hero-copy">Learning Objectives</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module8-Database-Programming.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <p>This module teaches pragmatic database programming across PostgreSQL, MySQL, and SQLite. You will configure local instances, explore schemas with DBeaver, and build Python data-access layers that respect performance and security best practices.</p>
+<h2>Learning Objectives</h2>
+<ul>
+<li>Install and configure PostgreSQL, MySQL, and SQLite for local development.</li>
+<li>Model schemas, constraints, and migrations with repeatable workflows.</li>
+<li>Use DBeaver for visual exploration, ER diagrams, and administrative tasks.</li>
+<li>Connect from Python using <code>psycopg</code>, <code>mysql-connector-python</code>, and the built-in <code>sqlite3</code> module with parameterized queries and connection pooling.</li>
+<li>Implement transactional logic, batching, and basic ORM patterns.</li>
+</ul>
+<hr>
+<h2>1. Environment Setup Overview</h2>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Install Notes</th>
+<th>Default Port</th>
+<th>Local Auth Tip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PostgreSQL</td>
+<td><code>apt/brew install postgresql</code> or Docker image <code>postgres:16-alpine</code></td>
+<td>5432</td>
+<td>Create dev role via <code>createuser --interactive</code></td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td><code>apt install mysql-server</code> or Docker <code>mysql:8</code></td>
+<td>3306</td>
+<td>Set root password, enable native password plugin if needed</td>
+</tr>
+<tr>
+<td>SQLite</td>
+<td>Built-in binary/database file</td>
+<td>N/A</td>
+<td>Database is a single <code>.db</code> file</td>
+</tr>
+</tbody>
+</table>
+<p>Sample Docker compose snippet:</p>
+<pre><code class="language-yaml">services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: course_db
+    ports:
+
+      - &quot;5432:5432&quot;
+  mysql:
+    image: mysql:8
+    command: [&quot;--default-authentication-plugin=mysql_native_password&quot;]
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: course_db
+    ports:
+
+      - &quot;3306:3306&quot;
+</code></pre>
+<hr>
+<h2>2. Schema Design &amp; Migration Basics</h2>
+<ol>
+<li><strong>Normalization &amp; Keys</strong>
+   - Use primary keys, foreign keys, and unique constraints to preserve integrity.
+   - Employ check constraints for domain-specific rules (e.g., <code>CHECK (quantity &gt;= 0)</code>).</li>
+<li><strong>Migration Tooling</strong>
+   - PostgreSQL/MySQL: use Alembic or Flyway for versioned migrations.
+   - SQLite: maintain SQL scripts; consider <code>alembic</code> with <code>BatchOperations</code> for limited ALTER support.</li>
+<li><strong>Sample Migration (PostgreSQL)</strong></li>
+</ol>
+<pre><code class="language-sql">CREATE TABLE inventory (
+  id SERIAL PRIMARY KEY,
+  sku TEXT NOT NULL UNIQUE,
+  quantity INTEGER NOT NULL DEFAULT 0,
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+</code></pre>
+<hr>
+<h2>3. PostgreSQL Programming Essentials</h2>
+<ul>
+<li><strong>psql Cheatsheet</strong></li>
+<li>Connect: <code>psql postgresql://dev:devpass@localhost:5432/course_db</code></li>
+<li>List tables: <code>\dt</code></li>
+<li>Inspect schema: <code>\d+ inventory</code></li>
+<li>Export query: <code>\copy (SELECT * FROM inventory) TO 'inventory.csv' CSV HEADER</code></li>
+<li><strong>Performance Tips</strong></li>
+<li>Use <code>EXPLAIN ANALYZE</code> to evaluate query plans.</li>
+<li>Create indexes on foreign keys and frequently filtered columns.</li>
+<li><strong>Python (psycopg)</strong></li>
+</ul>
+<pre><code class="language-python">import psycopg
+
+dsn = &quot;postgresql://dev:devpass@localhost:5432/course_db&quot;
+with psycopg.connect(dsn, autocommit=False) as conn:
+    with conn.cursor() as cur:
+        cur.execute(&quot;INSERT INTO inventory (sku, quantity) VALUES (%s, %s)&quot;, (&quot;ABC-1&quot;, 100))
+        conn.commit()
+</code></pre>
+<ul>
+<li><strong>Pooling</strong></li>
+<li>Use <code>psycopg_pool.ConnectionPool</code> for web apps to reuse connections safely.</li>
+</ul>
+<hr>
+<h2>4. MySQL Programming Essentials</h2>
+<ul>
+<li><strong>mysql CLI</strong></li>
+<li>Connect: <code>mysql -u root -p -h 127.0.0.1 -P 3306 course_db</code></li>
+<li>Show tables: <code>SHOW TABLES;</code></li>
+<li>Describe structure: <code>DESCRIBE orders;</code></li>
+<li>Import dump: <code>mysql -u root -p course_db &lt; backup.sql</code></li>
+<li><strong>Transaction Notes</strong></li>
+<li>Ensure tables use InnoDB to support transactions and row-level locking.</li>
+<li>Adjust isolation level per workload: <code>SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;</code></li>
+<li><strong>Python (<code>mysql-connector-python</code>)</strong></li>
+</ul>
+<pre><code class="language-python">import mysql.connector
+
+conn = mysql.connector.connect(user=&quot;root&quot;, password=&quot;rootpass&quot;, host=&quot;127.0.0.1&quot;, database=&quot;course_db&quot;)
+cur = conn.cursor(dictionary=True)
+cur.execute(&quot;SELECT * FROM orders WHERE status = %s&quot;, (&quot;pending&quot;,))
+rows = cur.fetchall()
+conn.commit()
+cur.close()
+conn.close()
+</code></pre>
+<ul>
+<li><strong>Prepared Statements</strong></li>
+<li>Always use parameter placeholders (<code>%s</code>) to avoid SQL injection.</li>
+</ul>
+<hr>
+<h2>5. SQLite Programming Essentials</h2>
+<ul>
+<li><strong>When to Use</strong></li>
+<li>Embedded apps, prototyping, local-first PWAs, CLI tools.</li>
+<li><strong>Shell Basics</strong></li>
+<li>Enter shell: <code>sqlite3 course.db</code></li>
+<li>List tables: <code>.tables</code></li>
+<li>Enable headers + column mode: <code>.headers on</code> / <code>.mode column</code></li>
+<li><strong>Python (<code>sqlite3</code>)</strong></li>
+</ul>
+<pre><code class="language-python">import sqlite3
+
+conn = sqlite3.connect(&quot;course.db&quot;)
+conn.row_factory = sqlite3.Row
+cur = conn.cursor()
+cur.execute(&quot;CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY, title TEXT, body TEXT)&quot;)
+cur.execute(&quot;INSERT INTO notes (title, body) VALUES (?, ?)&quot;, (&quot;Idea&quot;, &quot;Prototype&quot;))
+conn.commit()
+for row in cur.execute(&quot;SELECT * FROM notes&quot;):
+    print(dict(row))
+conn.close()
+</code></pre>
+<ul>
+<li><strong>Concurrency Considerations</strong></li>
+<li>SQLite allows one writer at a time; use WAL mode for better concurrency: <code>PRAGMA journal_mode = WAL;</code></li>
+</ul>
+<hr>
+<h2>6. DBeaver Workflow</h2>
+<ol>
+<li>Install DBeaver (community edition) from https://dbeaver.io/download/.</li>
+<li>Create connections for PostgreSQL/MySQL/SQLite using saved credentials.</li>
+<li>Use the Database Navigator to:
+   - Browse schemas, tables, views, procedures.
+   - Generate ER diagrams (right-click → "Create new ER diagram").
+   - Run SQL scripts with syntax highlighting and auto-complete.</li>
+<li>Export data via right-click → "Export Data" to CSV, JSON, or SQL insert scripts.</li>
+<li>Manage connections via folders (dev/staging/prod) and leverage DBeaver's SSH tunnels for secure access.</li>
+</ol>
+<p>Lab: connect to the Docker-compose databases, visualize relationships, and generate a schema compare report.</p>
+<hr>
+<h2>7. Python Data-Access Patterns</h2>
+<h3>Core Guidelines</h3>
+<ul>
+<li>Centralize DSN/credentials via environment variables or config files.</li>
+<li>Use context managers to ensure cursors and connections close even on error.</li>
+<li>Prefer parameterized SQL or query builders to avoid injection.</li>
+</ul>
+<h3>Async Examples</h3>
+<ul>
+<li><code>asyncpg</code> for PostgreSQL, <code>aiomysql</code> for MySQL – wrap queries in <code>async with pool.acquire()</code> blocks.</li>
+<li>Use <code>asyncio.to_thread</code> to interact with SQLite since it is blocking.</li>
+</ul>
+<h3>Lightweight ORM Option</h3>
+<ul>
+<li>Use SQLAlchemy Core or ORM to map models across PostgreSQL/MySQL/SQLite with one codebase.</li>
+</ul>
+<pre><code class="language-python">from sqlalchemy import Table, Column, Integer, String, MetaData
+from sqlalchemy import create_engine, select
+
+engine = create_engine(&quot;postgresql+psycopg://dev:devpass@localhost/course_db&quot;, future=True)
+metadata = MetaData()
+
+customers = Table(
+    &quot;customers&quot;,
+    metadata,
+    Column(&quot;id&quot;, Integer, primary_key=True),
+    Column(&quot;email&quot;, String(255), unique=True),
+)
+
+with engine.begin() as conn:
+    metadata.create_all(conn)
+    conn.execute(customers.insert().values(email=&quot;user@example.com&quot;))
+    rows = conn.execute(select(customers)).all()
+    print(rows)
+</code></pre>
+<hr>
+<h2>8. Capstone Project</h2>
+<p>Build a mini CRM that:</p>
+<ol>
+<li>Uses PostgreSQL in production, MySQL replica for analytics, and SQLite for offline desktop mode.</li>
+<li>Provides DBeaver project files documenting schemas and ERDs.</li>
+<li>Offers Python scripts (CLI or FastAPI) that detect the target database via config and run identical CRUD operations.</li>
+<li>Implements migrations, seed scripts, tests for SQL queries, and deployment instructions referencing Modules 6 &amp; 7.</li>
+</ol>
+<p>Deliverables include ER diagrams, SQL migrations, Python client code, and automation to spin up databases via Docker compose.</p>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>

@@ -130,6 +130,27 @@
 * **Command Checklist:**
     * Includes 30+ essential Docker CLI commands from installation through production operations
 
+## **Module 8: Database Programming & Tooling**
+
+[**Database Programming & Tooling**](./Module8-Database-Programming.md)
+
+* **Multi-Engine Setup:**
+    * Provision PostgreSQL, MySQL, and SQLite locally via packages or Docker compose
+* **Schema & Migration Discipline:**
+    * Normalize tables, enforce constraints, and run versioned migrations
+* **PostgreSQL Focus:**
+    * `psql` workflow, `EXPLAIN ANALYZE`, indexes, and `psycopg` code samples
+* **MySQL Focus:**
+    * `mysql` CLI, transaction tuning, and `mysql-connector-python` usage
+* **SQLite Focus:**
+    * Lightweight shell commands, WAL mode, and the built-in Python driver
+* **DBeaver Mastery:**
+    * Visual schema browsing, ER diagrams, and secure connection management
+* **Python Data Layers:**
+    * Parameterized queries, pools, async drivers, and SQLAlchemy abstractions
+* **Capstone:**
+    * Ship a multi-database CRM with shared models, migrations, and DBeaver assets
+
 **Note:**
 
 * **Language-Agnostic Approach:** While specific programming languages (like Python, Java, C++) will be used to implement concepts, the focus will be on understanding the underlying principles.
