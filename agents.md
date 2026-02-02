@@ -9,6 +9,16 @@ This repository powers the "Programming Course" GitHub Pages site (`https://joyb
 - `README.md` – Markdown syllabus and overview.
 - `scripts/generate_module_pages.py` – helper script that converts Markdown to HTML using consistent styling.
 
+### Current Module Map
+1. Module 1 – Foundations of Computer Science
+2. Module 2 – Programming Fundamentals
+3. Module 3 – Object-Oriented Programming
+4. Module 4 – Data Structures & Algorithms
+5. Module 5 – Advanced Topics
+6. Module 6 – Software Delivery & DevOps
+7. Module 7 – Docker Mastery
+8. Module 8 – Database Programming & Tooling
+
 ## Editing Existing Modules
 1. Open the relevant `ModuleX-Name.md` file.
 2. Maintain Markdown structure (`#` for module title, `##` for major sections, `###`/`####` as needed).
