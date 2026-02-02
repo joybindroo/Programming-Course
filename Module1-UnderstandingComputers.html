@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Foundations of Computer Science | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 1</p>
+            <h1>Module 1: Foundations of Computer Science</h1>
+            <p class="hero-copy">Understanding Computers: How Computers Work</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module1-UnderstandingComputers.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <h2>Understanding Computers: How Computers Work</h2>
+<h3>How Computers Work: A Basic Overview</h3>
+<p>A computer is a sophisticated electronic machine that follows a set of instructions to perform tasks.</p>
+<p><strong>Types of Computers:</strong></p>
+<ul>
+<li><strong>Desktop Computer:</strong> A personal computing device designed to fit on top of a typical office desk</li>
+<li><strong>Laptop:</strong> A compact and portable personal computer designed for mobile use</li>
+<li><strong>Mobile Devices:</strong> Smartphones and tablets with computing capabilities</li>
+</ul>
+<h3>Hardware Components</h3>
+<p><strong>Core Hardware Components:</strong></p>
+<ol>
+<li>
+<p><strong>Central Processing Unit (CPU):</strong> Often referred to as the "brain" of the computer, the CPU is responsible for executing instructions and performing calculations. It orchestrates the various components to work together.</p>
+</li>
+<li>
+<p><strong>Memory:</strong> This is where the computer stores data and instructions temporarily.</p>
+<ul>
+<li><strong>RAM (Random Access Memory):</strong> Short-term memory used to store information that the CPU is actively working on</li>
+<li><strong>ROM (Read-Only Memory):</strong> Long-term memory that stores essential system instructions</li>
+</ul>
+</li>
+<li>
+<p><strong>Storage Devices:</strong> These devices store data persistently.</p>
+<ul>
+<li><strong>Hard Disk Drive (HDD):</strong> Mechanical device that stores data on magnetic disks</li>
+<li><strong>Solid-State Drive (SSD):</strong> Faster storage device using flash memory</li>
+</ul>
+</li>
+<li>
+<p><strong>Input Devices:</strong> Devices that allow you to input data into the computer.</p>
+<ul>
+<li>Keyboard, mouse, scanner, microphone</li>
+</ul>
+</li>
+<li>
+<p><strong>Output Devices:</strong> Devices that display or output data from the computer.</p>
+<ul>
+<li>Monitor, printer, speakers</li>
+</ul>
+</li>
+</ol>
+<h3>Software Components</h3>
+<p><strong>System Software:</strong> Manages the computer's hardware and resources.</p>
+<ul>
+<li><strong>Operating Systems (OS):</strong> Like Windows, macOS, and Linux, they provide a user interface and manage hardware resources</li>
+</ul>
+<p><strong>Application Software:</strong> Programs designed to perform specific tasks.</p>
+<ul>
+<li>Word processors, spreadsheets, web browsers, games</li>
+</ul>
+<h3>The Computer's Basic Cycle</h3>
+<p>The computer follows a simple cycle to execute instructions:</p>
+<ol>
+<li><strong>Fetch:</strong> The CPU fetches an instruction from memory</li>
+<li><strong>Decode:</strong> The CPU decodes the instruction to understand what it needs to do</li>
+<li><strong>Execute:</strong> The CPU executes the instruction</li>
+<li><strong>Store:</strong> The result of the execution is stored in memory</li>
+</ol>
+<p>This cycle repeats continuously, allowing the computer to perform a wide range of tasks.</p>
+<h3>The Evolution of Computing</h3>
+<h4>Early Computing Machines: Mechanical Devices</h4>
+<p>Before electronic computers, mechanical devices performed calculations:</p>
+<ul>
+<li><strong>Abacus:</strong> Ancient counting tool using beads to represent numbers</li>
+<li><strong>Slide Rule:</strong> Mechanical analog computer for multiplication and division</li>
+<li><strong>Charles Babbage's Analytical Engine:</strong> Conceptual design for a mechanical general-purpose computer</li>
+</ul>
+<h4>The Digital Revolution</h4>
+<p>Key developments in modern computing:</p>
+<ul>
+<li><strong>Turing Machine:</strong> Theoretical device proposed by Alan Turing, laying foundation for computer science</li>
+<li><strong>Von Neumann Architecture:</strong> Fundamental design for digital computers with CPU, memory, input, and output components</li>
+</ul>
+<h4>Electronic Computers</h4>
+<ul>
+<li><strong>ENIAC:</strong> One of the earliest electronic general-purpose computers using vacuum tubes</li>
+<li><strong>Transistor-Based Computers:</strong> Smaller, more reliable, and energy-efficient computers</li>
+<li><strong>Integrated Circuits:</strong> Led to modern microprocessors and computers</li>
+</ul>
+<h4>Moore's Law</h4>
+<p>Observation that the number of transistors in a dense integrated circuit doubles approximately every two years, driving exponential growth in computing power.</p>
+<h2>Binary Number System and Its Significance</h2>
+<h3>Understanding Binary</h3>
+<p>Computers understand and process information in binary code, a number system using only two digits: 0 and 1. Each digit is called a bit.</p>
+<h3>Why Binary?</h3>
+<ul>
+<li><strong>Simplicity:</strong> Electronic circuits can easily represent two states: on (1) and off (0)</li>
+<li><strong>Reliability:</strong> Binary signals are less prone to errors compared to analog signals</li>
+<li><strong>Efficiency:</strong> Binary arithmetic is straightforward and efficient in hardware</li>
+</ul>
+<h3>Binary to Decimal Conversion</h3>
+<p>To convert a binary number to decimal, multiply each digit by its corresponding power of 2 and add the results.</p>
+<p>Example: Binary 1011 to Decimal:</p>
+<pre><code>1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 1 * 2^0 = 8 + 0 + 2 + 1 = 11
+</code></pre>
+<h3>Significance of Binary</h3>
+<ul>
+<li><strong>Data Representation:</strong> All data (text, images, sound) is stored and processed in binary</li>
+<li><strong>Machine Code:</strong> Computer instructions are in binary code</li>
+<li><strong>Digital Logic:</strong> Binary logic gates (AND, OR, NOT) are building blocks of digital circuits</li>
+</ul>
+<h2>Introduction to Algorithms</h2>
+<h3>Defining Algorithms</h3>
+<p>An algorithm is a finite sequence of well-defined instructions to solve a specific problem or accomplish a specific task. Algorithms are the heart of computer programming.</p>
+<p><strong>Characteristics of Good Algorithms:</strong></p>
+<ul>
+<li><strong>Finite:</strong> Must terminate after a finite number of steps</li>
+<li><strong>Well-defined:</strong> Each step must be precisely defined</li>
+<li><strong>Input:</strong> Zero or more inputs</li>
+<li><strong>Output:</strong> One or more outputs</li>
+<li><strong>Effective:</strong> Each step must be basic enough to be carried out</li>
+</ul>
+<h3>Problem-Solving Techniques</h3>
+<h4>Breaking Down Problems</h4>
+<p><strong>Decomposition:</strong> Breaking complex problems into smaller, manageable sub-problems.</p>
+<p>Example: Sorting a list of numbers</p>
+<ol>
+<li>Compare adjacent elements</li>
+<li>Swap if they're in wrong order</li>
+<li>Repeat until list is sorted</li>
+</ol>
+<h4>Algorithm Design Strategies</h4>
+<ol>
+<li><strong>Brute Force:</strong> Try all possible solutions until the correct one is found</li>
+<li><strong>Divide and Conquer:</strong> Break problem into smaller sub-problems, solve them independently</li>
+<li><strong>Greedy Approach:</strong> Make the locally optimal choice at each step</li>
+<li><strong>Dynamic Programming:</strong> Break problem into overlapping sub-problems and store results</li>
+</ol>
+<h3>Example: Finding the Maximum Number</h3>
+<p><strong>Problem:</strong> Find the largest number in a list</p>
+<p><strong>Algorithm:</strong></p>
+<ol>
+<li>Assume the first number is the maximum</li>
+<li>Go through each remaining number in the list</li>
+<li>If a number is greater than the current maximum, update the maximum</li>
+<li>After checking all numbers, return the maximum</li>
+</ol>
+<pre><code class="language-python">def find_maximum(numbers):
+    max_number = numbers[0]
+    for num in numbers[1:]:
+        if num &gt; max_number:
+            max_number = num
+    return max_number
+</code></pre>
+<h2>Flowcharts and Pseudocode</h2>
+<h3>Flowcharts</h3>
+<p>Flowcharts are visual diagrams that represent algorithms using standardized symbols:</p>
+<p><strong>Common Flowchart Symbols:</strong></p>
+<ul>
+<li><strong>Oval:</strong> Start/End</li>
+<li><strong>Rectangle:</strong> Process/Operation</li>
+<li><strong>Diamond:</strong> Decision</li>
+<li><strong>Parallelogram:</strong> Input/Output</li>
+<li><strong>Arrow:</strong> Flow direction</li>
+</ul>
+<h3>Pseudocode</h3>
+<p>Pseudocode is a simplified, informal programming language used to describe algorithms:</p>
+<p><strong>Example: Finding the Average of Numbers</strong></p>
+<pre><code>START
+    INPUT &quot;How many numbers?&quot; as count
+    SET sum = 0
+
+    FOR i FROM 1 TO count:
+        INPUT &quot;Enter number &quot; + i as number
+        sum = sum + number
+    END FOR
+
+    average = sum / count
+    PRINT &quot;The average is: &quot; + average
+END
+</code></pre>
+<h3>Converting Algorithm to Code</h3>
+<p><strong>Problem:</strong> Check if a number is positive, negative, or zero</p>
+<p><strong>Algorithm Steps:</strong></p>
+<ol>
+<li>Get input number</li>
+<li>If number &gt; 0, display "Positive"</li>
+<li>Else if number &lt; 0, display "Negative"</li>
+<li>Else, display "Zero"</li>
+</ol>
+<p><strong>Implementation:</strong></p>
+<pre><code class="language-python">def check_number(number):
+    if number &gt; 0:
+        return &quot;Positive&quot;
+    elif number &lt; 0:
+        return &quot;Negative&quot;
+    else:
+        return &quot;Zero&quot;
+</code></pre>
+<h2>Data Structures: Basic Concepts</h2>
+<h3>What are Data Structures?</h3>
+<p>Data structures are ways of organizing and storing data so that it can be accessed and modified efficiently. They are the building blocks for creating efficient algorithms.</p>
+<h3>Basic Data Structures</h3>
+<h4>Arrays</h4>
+<p>An array is a collection of elements of the same data type stored in contiguous memory locations.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Fixed size (in most languages)</li>
+<li>Elements accessed by index</li>
+<li>Fast random access</li>
+<li>Insertion/deletion can be expensive</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python"># Array of integers
+numbers = [5, 10, 15, 20, 25]
+print(numbers[2])  # Output: 15
+</code></pre>
+<h4>Lists</h4>
+<p>Lists are ordered collections that can grow and shrink dynamically.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Dynamic size</li>
+<li>Elements maintain insertion order</li>
+<li>Can contain different data types</li>
+<li>Flexible insertion and deletion</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python"># List of mixed types
+my_list = [1, &quot;hello&quot;, 3.14, True]
+my_list.append(&quot;new item&quot;)  # Add to end
+my_list.insert(0, &quot;first&quot;)  # Insert at position
+</code></pre>
+<h4>Stacks</h4>
+<p>A stack is a Last-In-First-Out (LIFO) data structure.</p>
+<p><strong>Operations:</strong></p>
+<ul>
+<li><strong>Push:</strong> Add element to top</li>
+<li><strong>Pop:</strong> Remove element from top</li>
+<li><strong>Peek:</strong> View top element without removing</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python">stack = []
+stack.append(1)  # Push 1
+stack.append(2)  # Push 2
+stack.append(3)  # Push 3
+
+top = stack.pop()  # Pop 3 (LIFO)
+</code></pre>
+<h4>Queues</h4>
+<p>A queue is a First-In-First-Out (FIFO) data structure.</p>
+<p><strong>Operations:</strong></p>
+<ul>
+<li><strong>Enqueue:</strong> Add element to rear</li>
+<li><strong>Dequeue:</strong> Remove element from front</li>
+<li><strong>Front:</strong> View front element</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code class="language-python">from collections import queue
+
+q = queue.Queue()
+q.put(1)  # Enqueue 1
+q.put(2)  # Enqueue 2
+
+front = q.get()  # Dequeue 1 (FIFO)
+</code></pre>
+<h3>Understanding Data Relationships</h3>
+<p><strong>Linear Data Structures:</strong></p>
+<ul>
+<li>Elements are arranged in sequential order</li>
+<li>One-to-one relationships between elements</li>
+<li>Examples: Arrays, Lists, Stacks, Queues</li>
+</ul>
+<p><strong>Non-linear Data Structures:</strong></p>
+<ul>
+<li>Elements can have multiple relationships</li>
+<li>Not arranged in sequential order</li>
+<li>Examples: Trees, Graphs (covered in later modules)</li>
+</ul>
+<h3>Applications of Data Structures</h3>
+<p><strong>Arrays:</strong></p>
+<ul>
+<li>Storing collections of similar items</li>
+<li>Implementing other data structures</li>
+<li>Mathematical computations</li>
+</ul>
+<p><strong>Lists:</strong></p>
+<ul>
+<li>Dynamic collections where size changes</li>
+<li>When insertion/deletion is frequent</li>
+</ul>
+<p><strong>Stacks:</strong></p>
+<ul>
+<li>Function call management</li>
+<li>Undo operations in editors</li>
+<li>Expression evaluation</li>
+</ul>
+<p><strong>Queues:</strong></p>
+<ul>
+<li>Task scheduling</li>
+<li>Print job management</li>
+<li>Breadth-first search algorithms</li>
+</ul>
+<h2>Practice Exercises</h2>
+<h3>Computer Basics</h3>
+<ol>
+<li>Draw a diagram showing the relationship between CPU, RAM, and storage</li>
+<li>Convert the following binary numbers to decimal: 1010, 1111, 10000</li>
+<li>Explain why computers use binary instead of decimal</li>
+</ol>
+<h3>Algorithms</h3>
+<ol>
+<li>Write an algorithm to find the sum of all even numbers in a list</li>
+<li>Create a flowchart for a simple login process</li>
+<li>Write pseudocode for a calculator that performs basic operations</li>
+</ol>
+<h3>Data Structures</h3>
+<ol>
+<li>Implement a stack using a list</li>
+<li>Create a function that reverses a queue</li>
+<li>Compare the performance of arrays and lists for different operations</li>
+</ol>
+<h2>Key Takeaways</h2>
+<ul>
+<li>Computers consist of hardware (physical components) and software (programs)</li>
+<li>Binary is fundamental to how computers store and process information</li>
+<li>Algorithms are step-by-step procedures for solving problems</li>
+<li>Flowcharts and pseudocode help visualize and plan algorithms</li>
+<li>Data structures organize data for efficient access and modification</li>
+<li>Understanding these fundamentals is essential before learning programming languages</li>
+</ul>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>

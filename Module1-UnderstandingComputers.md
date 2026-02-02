@@ -18,18 +18,18 @@ A computer is a sophisticated electronic machine that follows a set of instructi
 1. **Central Processing Unit (CPU):** Often referred to as the "brain" of the computer, the CPU is responsible for executing instructions and performing calculations. It orchestrates the various components to work together.
 
 2. **Memory:** This is where the computer stores data and instructions temporarily.
-   - **RAM (Random Access Memory):** Short-term memory used to store information that the CPU is actively working on
-   - **ROM (Read-Only Memory):** Long-term memory that stores essential system instructions
+    - **RAM (Random Access Memory):** Short-term memory used to store information that the CPU is actively working on
+    - **ROM (Read-Only Memory):** Long-term memory that stores essential system instructions
 
 3. **Storage Devices:** These devices store data persistently.
-   - **Hard Disk Drive (HDD):** Mechanical device that stores data on magnetic disks
-   - **Solid-State Drive (SSD):** Faster storage device using flash memory
+    - **Hard Disk Drive (HDD):** Mechanical device that stores data on magnetic disks
+    - **Solid-State Drive (SSD):** Faster storage device using flash memory
 
 4. **Input Devices:** Devices that allow you to input data into the computer.
-   - Keyboard, mouse, scanner, microphone
+    - Keyboard, mouse, scanner, microphone
 
 5. **Output Devices:** Devices that display or output data from the computer.
-   - Monitor, printer, speakers
+    - Monitor, printer, speakers
 
 ### Software Components
 

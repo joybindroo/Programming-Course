@@ -1,5 +1,7 @@
 # A Comprehensive Computer Science & Programming Course: From Novice to Expert
 
+> **Live site:** https://joybindroo.github.io/Programming-Course/
+
 ## **Module 1: Foundations of Computer Science**
 
 * [**Understanding Computers:**](./Module1-UnderstandingComputers.md)
@@ -69,22 +71,24 @@
 
 [**Advanced Topics**](./Module5-Advanced-Topics.md)
 
-* **File I/O:**
-    * Reading from and writing to files
-* **Exception Handling:**
-    * Handling errors and exceptions gracefully
+* **File I/O Systems & Data Pipelines:**
+    * Stream text/binary data, validate schemas, and ensure durability with atomic writes
+* **Defensive Exception Handling:**
+    * Build custom exception hierarchies, retries, and structured logging for observability
 * **Concurrency and Parallelism:**
-    * Multithreading and multiprocessing
-* **Design Patterns:**
-    * Common design patterns: Singleton, Factory, Observer
-* **Web Development:**
-    * Front-end and back-end web development technologies
+    * Compare threads, processes, async IO, and coordination primitives for throughput gains
+* **Design Patterns in Practice:**
+    * Apply creational/structural/behavioral patterns to real product features with trade-off notes
+* **Web Development Deep Dive:**
+    * Architect REST services, secure APIs, and ship responsive dashboards with CI observability
 * **Mobile App Development:**
-    * Android app development using Python
-* **Game Development:**
-    * Game development using PyGame or JS Engines
-* **Machine Learning and Artificial Intelligence:**
-    * Introduction to machine learning and AI concepts
+    * Evaluate native vs cross-platform stacks, offline sync, and telemetry-driven releases
+* **Game Development Foundations:**
+    * Implement game loops, ECS/state machines, physics, and asset pipelines for prototypes
+* **Machine Learning & AI:**
+    * Run the ML lifecycle—data prep, model training/evaluation, deployment, and drift monitoring
+* **Systems Integration Capstone:**
+    * Combine multiple disciplines (web, mobile, ML, realtime) into a documented end-to-end project
 
 **Note:**
 

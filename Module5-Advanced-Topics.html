@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 5: Advanced Topics | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 5</p>
+            <h1>Module 5: Advanced Topics</h1>
+            <p class="hero-copy">Learning Goals</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module5-Advanced-Topics.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <p>This culminating module pushes beyond core programming into the practices you will encounter when shipping real products. Each section combines conceptual depth with labs that reinforce production-grade habits.</p>
+<h2>Learning Goals</h2>
+<ul>
+<li>Design resilient code that handles persistence, failures, and parallel workloads.</li>
+<li>Recognize when to apply established architectural patterns.</li>
+<li>Ship cross-platform user experiences (web, mobile, interactive media).</li>
+<li>Explore the full machine-learning lifecycle from data prep to deployment.</li>
+</ul>
+<h2>File I/O Systems and Data Pipelines</h2>
+<h3>Core Concepts</h3>
+<ul>
+<li>Compare text, binary, memory-mapped, and streaming IO plus their performance trade-offs.</li>
+<li>Understand how buffering layers (stdio, OS page cache, disks) influence throughput and durability guarantees.</li>
+<li>Track file permissions, locking semantics, and platform-specific path handling.</li>
+</ul>
+<h3>Structured Data Workflows</h3>
+<ul>
+<li>Parse CSV/JSON/YAML with schema validation and fallbacks when columns drift.</li>
+<li>Snapshot and append logs safely by combining <code>with</code> blocks, flush intervals, and atomic rename patterns.</li>
+<li>Implement checksum-based verification to detect silent corruption when moving artifacts between systems.</li>
+</ul>
+<pre><code class="language-python">from pathlib import Path
+import json
+
+def stream_events(source: Path, sink: Path) -&gt; None:
+    with source.open('r', encoding='utf-8') as reader, sink.open('a', encoding='utf-8') as writer:
+        for line in reader:
+            event = json.loads(line)
+            writer.write(json.dumps({&quot;id&quot;: event[&quot;id&quot;], &quot;status&quot;: event[&quot;status&quot;]}) + &quot;\n&quot;)
+            writer.flush()  # keep queues short for crash safety
+</code></pre>
+<h3>Practice Lab</h3>
+<ol>
+<li>Build a CLI that tails sensor data and rotates files when they exceed 10 MB.</li>
+<li>Extend it with JSON schema validation and dead-letter queues for malformed rows.</li>
+</ol>
+<h2>Defensive Exception Handling</h2>
+<h3>Patterns</h3>
+<ul>
+<li>Layered exception hierarchies (domain-level vs infrastructure) clarify recovery boundaries.</li>
+<li>Use <code>try/except/else/finally</code> to keep cleanup logic deterministic; log with structured context.</li>
+<li>Favor guard clauses and assertions near the source of truth to catch bugs early.</li>
+</ul>
+<h3>Anti-Patterns to Avoid</h3>
+<ul>
+<li>Swallowing exceptions (<code>except Exception: pass</code>) which hides systemic failures.</li>
+<li>Raising generic errors without actionable metadata.</li>
+<li>Mixing control flow and exceptions; prefer return values for expected branches.</li>
+</ul>
+<h3>Mini Project</h3>
+<p>Refactor a legacy import script to:</p>
+<ol>
+<li>Introduce custom exceptions (<code>DataValidationError</code>, <code>ExternalServiceError</code>).</li>
+<li>Retry transient network faults with exponential backoff.</li>
+<li>Emit metrics (success/failure counts) for observability dashboards.</li>
+</ol>
+<h2>Concurrency and Parallelism</h2>
+<h3>Comparison Matrix</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Best Use</th>
+<th>Hazards</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Threads</td>
+<td>IO-heavy tasks needing shared memory</td>
+<td>Race conditions, GIL (Python)</td>
+</tr>
+<tr>
+<td>Processes</td>
+<td>CPU-bound work, isolation</td>
+<td>IPC overhead</td>
+</tr>
+<tr>
+<td>Async IO</td>
+<td>Vast numbers of sockets/timers</td>
+<td>Requires non-blocking libraries</td>
+</tr>
+</tbody>
+</table>
+<h3>Coordination Techniques</h3>
+<ul>
+<li>Protect shared state with locks or lock-free primitives (atomic queues, ring buffers).</li>
+<li>Apply producer/consumer queues to decouple ingestion from processing throughput.</li>
+<li>Use structured concurrency patterns (task groups, supervisors) to ensure child tasks finish or cancel together.</li>
+</ul>
+<h3>Exercise</h3>
+<p>Build a crawler that:</p>
+<ol>
+<li>Kicks off async fetches for hundreds of URLs (e.g., <code>asyncio</code> + <code>aiohttp</code>).</li>
+<li>Falls back to a thread pool for CPU-heavy HTML parsing.</li>
+<li>Aggregates metrics and respects rate limits using tokens/leaky buckets.</li>
+</ol>
+<h2>Design Patterns in Practice</h2>
+<h3>Creational</h3>
+<ul>
+<li>Factory Method: switch algorithms based on configuration without leaking constructors.</li>
+<li>Builder: assemble complex immutable objects (e.g., deployment payloads) step-by-step.</li>
+</ul>
+<h3>Structural</h3>
+<ul>
+<li>Adapter: wrap third-party SDKs so the rest of your code uses a stable interface.</li>
+<li>Facade: expose a simplified API over subsystems (auth, billing, notifications) for other teams.</li>
+</ul>
+<h3>Behavioral</h3>
+<ul>
+<li>Observer/Event Bus: broadcast state changes from domain models to UI or logging.</li>
+<li>Strategy: swap scoring algorithms or ML inference paths without touching orchestrators.</li>
+</ul>
+<h3>Pattern Studio</h3>
+<p>Choose a real feature (payment pipeline, multiplayer lobby) and document:</p>
+<ol>
+<li>The problem statement.</li>
+<li>Why a pattern fits.</li>
+<li>Trade-offs introduced (complexity, testing burden).</li>
+</ol>
+<h2>Web Development Deep Dive</h2>
+<h3>Backend Skills</h3>
+<ul>
+<li>Model REST resources with OpenAPI specs, versioning, and pagination contracts.</li>
+<li>Implement layered architecture (handlers → services → repositories) to isolate logic.</li>
+<li>Secure APIs with JWT/OAuth flows plus rate limiting, input validation, and audit logging.</li>
+</ul>
+<h3>Frontend/Full-Stack Touchpoints</h3>
+<ul>
+<li>Build responsive layouts (CSS grid/flex) plus component-driven UI frameworks.</li>
+<li>Wire data fetching hooks with optimistic updates and background revalidation.</li>
+<li>Automate testing (unit + contract + end-to-end) and CI deployments to GitHub Pages or cloud apps.</li>
+</ul>
+<h3>Lab</h3>
+<p>Ship a mini SaaS dashboard:</p>
+<ol>
+<li>Postgres + REST API for subscription data.</li>
+<li>Web client with charts, filters, and offline caching.</li>
+<li>Observability: request tracing + uptime checks.</li>
+</ol>
+<h2>Mobile App Development</h2>
+<h3>Platform Choices</h3>
+<ul>
+<li>Native (Swift/Kotlin) grants first-class APIs, while cross-platform (Flutter/React Native) eases shared logic.</li>
+<li>Evaluate navigation stacks, state containers, and build tooling (Gradle/Xcode).</li>
+</ul>
+<h3>Device Integration</h3>
+<ul>
+<li>Use permission flows for camera/GPS; plan fallbacks when users decline.</li>
+<li>Cache data locally (SQLite/Room/Core Data) and sync opportunistically with background tasks.</li>
+</ul>
+<h3>Capstone Sprint</h3>
+<p>Prototype a productivity app that:</p>
+<ol>
+<li>Captures tasks offline and syncs when connectivity returns.</li>
+<li>Sends scheduled reminders via OS notification services.</li>
+<li>Tracks performance and crashes through telemetry SDKs.</li>
+</ol>
+<h2>Game Development Foundations</h2>
+<h3>Core Loop</h3>
+<ul>
+<li>Timestep management (<code>fixed_update</code>, <code>render</code>) keeps physics deterministic across frame rates.</li>
+<li>Scene graph hierarchies simplify collision checks and transforms.</li>
+</ul>
+<h3>Systems to Implement</h3>
+<ul>
+<li>Input mapping layer that decouples hardware keys from gameplay actions.</li>
+<li>Entity-component-system (ECS) or state machines for modifiable behaviors.</li>
+<li>Basic physics: acceleration, gravity, collision responses, tweaked via debug overlays.</li>
+</ul>
+<h3>Workshop</h3>
+<p>Create a tower-defense prototype with:</p>
+<ol>
+<li>Asset pipeline (tile maps, sprite atlases).</li>
+<li>AI pathfinding (A*, wavefront).</li>
+<li>Save/restore checkpoints to reinforce file IO + serialization skills.</li>
+</ol>
+<h2>Machine Learning and AI</h2>
+<h3>Workflow</h3>
+<ul>
+<li>Data ops: exploratory analysis, feature scaling, train/validation/test splits.</li>
+<li>Model development: start with baseline (linear/logistic), then iterate to trees, boosting, or neural nets.</li>
+<li>Evaluation: precision/recall, ROC AUC, calibration, confusion matrices.</li>
+</ul>
+<h3>Responsible AI Considerations</h3>
+<ul>
+<li>Track dataset provenance and bias audits.</li>
+<li>Implement model monitoring to detect drift and trigger retraining.</li>
+<li>Package models with reproducible environments (Conda, Docker) and REST inference endpoints.</li>
+</ul>
+<h3>Hands-On Track</h3>
+<ol>
+<li>Build an ML notebook predicting churn from anonymized product metrics.</li>
+<li>Convert it into a service with batching, caching, and tracing.</li>
+<li>Automate nightly evaluation jobs that compare live metrics vs historic baselines.</li>
+</ol>
+<h2>Capstone: Systems Integration Challenge</h2>
+<ul>
+<li>Combine at least three topics above (e.g., mobile client ↔ web API ↔ ML scoring service).</li>
+<li>Document architecture decisions (ADR), error budgets, and deployment checklist.</li>
+<li>Present observability dashboards demonstrating throughput, latency, and failure recovery drills.</li>
+</ul>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>

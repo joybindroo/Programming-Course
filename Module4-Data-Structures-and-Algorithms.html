@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4: Data Structures and Algorithms | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 4</p>
+            <h1>Module 4: Data Structures and Algorithms</h1>
+            <p class="hero-copy">Arrays and Strings</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module4-Data-Structures-and-Algorithms.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <h2>Arrays and Strings</h2>
+<h3>Array Operations</h3>
+<p>Arrays are fundamental data structures that store elements of the same type in contiguous memory locations.</p>
+<h4>Searching Arrays</h4>
+<p><strong>Linear Search:</strong></p>
+<pre><code class="language-python">def linear_search(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i  # Return index if found
+    return -1  # Return -1 if not found
+
+# Example
+numbers = [5, 3, 8, 1, 9, 2]
+index = linear_search(numbers, 8)  # Returns 2
+</code></pre>
+<p><strong>Binary Search (for sorted arrays):</strong></p>
+<pre><code class="language-python">def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+
+    while left &lt;= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] &lt; target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    return -1
+
+# Example (array must be sorted)
+sorted_numbers = [1, 2, 3, 5, 8, 9]
+index = binary_search(sorted_numbers, 5)  # Returns 3
+</code></pre>
+<h4>Sorting Arrays</h4>
+<p><strong>Bubble Sort:</strong></p>
+<pre><code class="language-python">def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] &gt; arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+# Example
+unsorted = [64, 34, 25, 12, 22, 11, 90]
+sorted_arr = bubble_sort(unsorted)  # [11, 12, 22, 25, 34, 64, 90]
+</code></pre>
+<p><strong>Selection Sort:</strong></p>
+<pre><code class="language-python">def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] &lt; arr[min_idx]:
+                min_idx = j
+        arr[i], arr[min_idx] = arr[min_idx], arr[i]
+    return arr
+</code></pre>
+<p><strong>Insertion Sort:</strong></p>
+<pre><code class="language-python">def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j &gt;= 0 and key &lt; arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+    return arr
+</code></pre>
+<h4>Array Manipulation</h4>
+<pre><code class="language-python">def reverse_array(arr):
+    left, right = 0, len(arr) - 1
+    while left &lt; right:
+        arr[left], arr[right] = arr[right], arr[left]
+        left += 1
+        right -= 1
+    return arr
+
+def rotate_array(arr, k):
+    n = len(arr)
+    k = k % n  # Handle k &gt; n
+    return arr[-k:] + arr[:-k]
+
+def find_duplicates(arr):
+    seen = set()
+    duplicates = []
+    for item in arr:
+        if item in seen:
+            duplicates.append(item)
+        else:
+            seen.add(item)
+    return duplicates
+</code></pre>
+<h3>String Manipulation</h3>
+<p>String operations are essential for text processing and manipulation.</p>
+<h4>Basic String Operations</h4>
+<pre><code class="language-python">def reverse_string(s):
+    return s[::-1]
+
+def is_palindrome(s):
+    # Remove non-alphanumeric characters and convert to lowercase
+    clean_s = ''.join(char.lower() for char in s if char.isalnum())
+    return clean_s == clean_s[::-1]
+
+def count_vowels(s):
+    vowels = &quot;aeiouAEIOU&quot;
+    return sum(1 for char in s if char in vowels)
+
+def capitalize_words(s):
+    return ' '.join(word.capitalize() for word in s.split())
+</code></pre>
+<h4>String Searching</h4>
+<pre><code class="language-python">def find_substring(s, pattern):
+    n, m = len(s), len(pattern)
+
+    for i in range(n - m + 1):
+        if s[i:i+m] == pattern:
+            return i  # Return starting index
+    return -1  # Pattern not found
+
+def count_occurrences(s, pattern):
+    count = start = 0
+    while True:
+        start = s.find(pattern, start)
+        if start == -1:
+            break
+        count += 1
+        start += 1  # Move past this occurrence
+    return count
+</code></pre>
+<h4>String Transformations</h4>
+<pre><code class="language-python">def remove_duplicates(s):
+    result = []
+    seen = set()
+    for char in s:
+        if char not in seen:
+            result.append(char)
+            seen.add(char)
+    return ''.join(result)
+
+def compress_string(s):
+    if not s:
+        return s
+
+    compressed = []
+    count = 1
+    current = s[0]
+
+    for char in s[1:]:
+        if char == current:
+            count += 1
+        else:
+            compressed.append(f&quot;{current}{count}&quot;)
+            current = char
+            count = 1
+
+    compressed.append(f&quot;{current}{count}&quot;)
+    compressed_str = ''.join(compressed)
+
+    return compressed_str if len(compressed_str) &lt; len(s) else s
+</code></pre>
+<h2>Linked Lists</h2>
+<p>Linked lists are linear data structures where elements are not stored in contiguous memory locations.</p>
+<h3>Singly Linked List</h3>
+<pre><code class="language-python">class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class SinglyLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+
+        last = self.head
+        while last.next:
+            last = last.next
+        last.next = new_node
+
+    def prepend(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def delete(self, key):
+        current = self.head
+
+        # If head node itself holds the key
+        if current and current.data == key:
+            self.head = current.next
+            current = None
+            return
+
+        # Search for the key
+        prev = None
+        while current and current.data != key:
+            prev = current
+            current = current.next
+
+        if current is None:
+            return  # Key not found
+
+        prev.next = current.next
+        current = None
+
+    def search(self, key):
+        current = self.head
+        while current:
+            if current.data == key:
+                return True
+            current = current.next
+        return False
+
+    def display(self):
+        elements = []
+        current = self.head
+        while current:
+            elements.append(str(current.data))
+            current = current.next
+        return &quot; -&gt; &quot;.join(elements)
+</code></pre>
+<h3>Doubly Linked List</h3>
+<pre><code class="language-python">class DoublyNode:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def append(self, data):
+        new_node = DoublyNode(data)
+
+        if not self.head:
+            self.head = self.tail = new_node
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+
+    def prepend(self, data):
+        new_node = DoublyNode(data)
+
+        if not self.head:
+            self.head = self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+
+    def delete(self, key):
+        current = self.head
+
+        while current:
+            if current.data == key:
+                if current.prev:
+                    current.prev.next = current.next
+                else:
+                    self.head = current.next
+
+                if current.next:
+                    current.next.prev = current.prev
+                else:
+                    self.tail = current.prev
+
+                return True
+            current = current.next
+
+        return False
+
+    def display_forward(self):
+        elements = []
+        current = self.head
+        while current:
+            elements.append(str(current.data))
+            current = current.next
+        return &quot; -&gt; &quot;.join(elements)
+
+    def display_backward(self):
+        elements = []
+        current = self.tail
+        while current:
+            elements.append(str(current.data))
+            current = current.prev
+        return &quot; -&gt; &quot;.join(elements)
+</code></pre>
+<h2>Stacks and Queues</h2>
+<h3>Stack Implementation</h3>
+<p>Stacks follow Last-In-First-Out (LIFO) principle.</p>
+<pre><code class="language-python">class Stack:
+    def __init__(self):
+        self.items = []
+
+    def push(self, item):
+        self.items.append(item)
+
+    def pop(self):
+        if not self.is_empty():
+            return self.items.pop()
+        raise IndexError(&quot;pop from empty stack&quot;)
+
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1]
+        raise IndexError(&quot;peek from empty stack&quot;)
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def size(self):
+        return len(self.items)
+
+# Applications
+def reverse_string_with_stack(s):
+    stack = Stack()
+    for char in s:
+        stack.push(char)
+
+    reversed_str = &quot;&quot;
+    while not stack.is_empty():
+        reversed_str += stack.pop()
+
+    return reversed_str
+
+def is_balanced_parentheses(s):
+    stack = Stack()
+    pairs = {'(': ')', '[': ']', '{': '}'}
+
+    for char in s:
+        if char in pairs:
+            stack.push(char)
+        elif char in pairs.values():
+            if stack.is_empty():
+                return False
+            opening = stack.pop()
+            if pairs[opening] != char:
+                return False
+
+    return stack.is_empty()
+</code></pre>
+<h3>Queue Implementation</h3>
+<p>Queues follow First-In-First-Out (FIFO) principle.</p>
+<pre><code class="language-python">class Queue:
+    def __init__(self):
+        self.items = []
+
+    def enqueue(self, item):
+        self.items.append(item)
+
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.pop(0)
+        raise IndexError(&quot;dequeue from empty queue&quot;)
+
+    def front(self):
+        if not self.is_empty():
+            return self.items[0]
+        raise IndexError(&quot;front from empty queue&quot;)
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def size(self):
+        return len(self.items)
+
+# Applications
+from collections import deque
+
+def hot_potato(names, num):
+    queue = deque(names)
+
+    while len(queue) &gt; 1:
+        for _ in range(num):
+            queue.append(queue.popleft())
+        queue.popleft()  # Eliminate player
+
+    return queue[0]
+
+def reverse_queue(queue):
+    stack = []
+
+    # Dequeue all elements and push to stack
+    while not queue.is_empty():
+        stack.append(queue.dequeue())
+
+    # Pop from stack and enqueue back to queue
+    while stack:
+        queue.enqueue(stack.pop())
+</code></pre>
+<h2>Trees and Graphs</h2>
+<h3>Binary Trees</h3>
+<pre><code class="language-python">class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+class BinaryTree:
+    def __init__(self, root=None):
+        self.root = root
+
+    def insert(self, val):
+        if not self.root:
+            self.root = TreeNode(val)
+        else:
+            self._insert_recursive(self.root, val)
+
+    def _insert_recursive(self, node, val):
+        if val &lt; node.val:
+            if node.left:
+                self._insert_recursive(node.left, val)
+            else:
+                node.left = TreeNode(val)
+        else:
+            if node.right:
+                self._insert_recursive(node.right, val)
+            else:
+                node.right = TreeNode(val)
+</code></pre>
+<h3>Tree Traversal Algorithms</h3>
+<pre><code class="language-python">def inorder_traversal(root):
+    result = []
+
+    def traverse(node):
+        if node:
+            traverse(node.left)
+            result.append(node.val)
+            traverse(node.right)
+
+    traverse(root)
+    return result
+
+def preorder_traversal(root):
+    result = []
+
+    def traverse(node):
+        if node:
+            result.append(node.val)
+            traverse(node.left)
+            traverse(node.right)
+
+    traverse(root)
+    return result
+
+def postorder_traversal(root):
+    result = []
+
+    def traverse(node):
+        if node:
+            traverse(node.left)
+            traverse(node.right)
+            result.append(node.val)
+
+    traverse(root)
+    return result
+
+# Iterative traversals
+def inorder_iterative(root):
+    result = []
+    stack = []
+    current = root
+
+    while current or stack:
+        while current:
+            stack.append(current)
+            current = current.left
+
+        current = stack.pop()
+        result.append(current.val)
+        current = current.right
+
+    return result
+</code></pre>
+<h3>Binary Search Tree Operations</h3>
+<pre><code class="language-python">class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, val):
+        self.root = self._insert(self.root, val)
+
+    def _insert(self, node, val):
+        if not node:
+            return TreeNode(val)
+
+        if val &lt; node.val:
+            node.left = self._insert(node.left, val)
+        else:
+            node.right = self._insert(node.right, val)
+
+        return node
+
+    def search(self, val):
+        return self._search(self.root, val)
+
+    def _search(self, node, val):
+        if not node or node.val == val:
+            return node
+
+        if val &lt; node.val:
+            return self._search(node.left, val)
+        else:
+            return self._search(node.right, val)
+
+    def delete(self, val):
+        self.root = self._delete(self.root, val)
+
+    def _delete(self, node, val):
+        if not node:
+            return node
+
+        if val &lt; node.val:
+            node.left = self._delete(node.left, val)
+        elif val &gt; node.val:
+            node.right = self._delete(node.right, val)
+        else:
+            # Node with one child or no child
+            if not node.left:
+                return node.right
+            elif not node.right:
+                return node.left
+
+            # Node with two children
+            node.val = self._min_value(node.right).val
+            node.right = self._delete(node.right, node.val)
+
+        return node
+
+    def _min_value(self, node):
+        current = node
+        while current.left:
+            current = current.left
+        return current
+</code></pre>
+<h3>Graph Data Structures</h3>
+<pre><code class="language-python">class Graph:
+    def __init__(self, vertices=0):
+        self.vertices = vertices
+        self.adj_list = {i: [] for i in range(vertices)}
+
+    def add_edge(self, u, v, directed=False):
+        self.adj_list[u].append(v)
+        if not directed:
+            self.adj_list[v].append(u)
+
+    def bfs(self, start):
+        visited = [False] * self.vertices
+        queue = [start]
+        visited[start] = True
+        result = []
+
+        while queue:
+            node = queue.pop(0)
+            result.append(node)
+
+            for neighbor in self.adj_list[node]:
+                if not visited[neighbor]:
+                    visited[neighbor] = True
+                    queue.append(neighbor)
+
+        return result
+
+    def dfs(self, start):
+        visited = [False] * self.vertices
+        result = []
+
+        def dfs_recursive(node):
+            visited[node] = True
+            result.append(node)
+
+            for neighbor in self.adj_list[node]:
+                if not visited[neighbor]:
+                    dfs_recursive(neighbor)
+
+        dfs_recursive(start)
+        return result
+
+    def dfs_iterative(self, start):
+        visited = [False] * self.vertices
+        stack = [start]
+        visited[start] = True
+        result = []
+
+        while stack:
+            node = stack.pop()
+            result.append(node)
+
+            for neighbor in self.adj_list[node]:
+                if not visited[neighbor]:
+                    visited[neighbor] = True
+                    stack.append(neighbor)
+
+        return result
+</code></pre>
+<h2>Recursion</h2>
+<h3>Recursive Problem-Solving Techniques</h3>
+<p>Recursion is a problem-solving approach where a function calls itself to solve smaller instances of the same problem.</p>
+<h4>Factorial</h4>
+<pre><code class="language-python">def factorial(n):
+    if n &lt;= 1:
+        return 1
+    return n * factorial(n - 1)
+
+# Iterative version for comparison
+def factorial_iterative(n):
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+</code></pre>
+<h4>Fibonacci Sequence</h4>
+<pre><code class="language-python">def fibonacci(n):
+    if n &lt;= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+# Optimized version with memoization
+def fibonacci_memo(n, memo={}):
+    if n in memo:
+        return memo[n]
+    if n &lt;= 1:
+        return n
+
+    memo[n] = fibonacci_memo(n - 1, memo) + fibonacci_memo(n - 2, memo)
+    return memo[n]
+</code></pre>
+<h4>Tower of Hanoi</h4>
+<pre><code class="language-python">def tower_of_hanoi(n, source, auxiliary, destination):
+    if n == 1:
+        print(f&quot;Move disk 1 from {source} to {destination}&quot;)
+        return
+
+    tower_of_hanoi(n - 1, source, destination, auxiliary)
+    print(f&quot;Move disk {n} from {source} to {destination}&quot;)
+    tower_of_hanoi(n - 1, auxiliary, source, destination)
+
+# Example usage
+# tower_of_hanoi(3, 'A', 'B', 'C')
+</code></pre>
+<h3>Recursive Tree Traversals</h3>
+<pre><code class="language-python">def max_depth(root):
+    if not root:
+        return 0
+    return 1 + max(max_depth(root.left), max_depth(root.right))
+
+def is_same_tree(p, q):
+    if not p and not q:
+        return True
+    if not p or not q:
+        return False
+    return (p.val == q.val and 
+            is_same_tree(p.left, q.left) and 
+            is_same_tree(p.right, q.right))
+
+def invert_binary_tree(root):
+    if not root:
+        return None
+
+    root.left, root.right = invert_binary_tree(root.right), invert_binary_tree(root.left)
+    return root
+</code></pre>
+<h3>Backtracking</h3>
+<pre><code class="language-python">def generate_subsets(nums):
+    result = []
+
+    def backtrack(start, current):
+        result.append(current[:])
+
+        for i in range(start, len(nums)):
+            current.append(nums[i])
+            backtrack(i + 1, current)
+            current.pop()
+
+    backtrack(0, [])
+    return result
+
+def generate_permutations(nums):
+    result = []
+
+    def backtrack(current, used):
+        if len(current) == len(nums):
+            result.append(current[:])
+            return
+
+        for i in range(len(nums)):
+            if not used[i]:
+                used[i] = True
+                current.append(nums[i])
+                backtrack(current, used)
+                current.pop()
+                used[i] = False
+
+    backtrack([], [False] * len(nums))
+    return result
+</code></pre>
+<h2>Algorithm Analysis</h2>
+<h3>Time and Space Complexity</h3>
+<pre><code class="language-python"># O(1) - Constant time
+def get_first_element(arr):
+    return arr[0] if arr else None
+
+# O(n) - Linear time
+def find_maximum(arr):
+    max_val = arr[0] if arr else None
+    for num in arr:
+        if num &gt; max_val:
+            max_val = num
+    return max_val
+
+# O(n²) - Quadratic time
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(n - i - 1):
+            if arr[j] &gt; arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+# O(log n) - Logarithmic time
+def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left &lt;= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] &lt; target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1
+</code></pre>
+<h2>Practice Exercises</h2>
+<h3>Arrays and Strings</h3>
+<ol>
+<li>Implement a function to find the maximum subarray sum (Kadane's algorithm)</li>
+<li>Write a function to check if two strings are anagrams</li>
+<li>Implement a function to rotate an array by k positions</li>
+<li>Create a function to find the longest palindromic substring</li>
+</ol>
+<h3>Linked Lists</h3>
+<ol>
+<li>Implement a function to detect a cycle in a linked list</li>
+<li>Write a function to merge two sorted linked lists</li>
+<li>Create a function to find the middle element of a linked list</li>
+<li>Implement a function to remove duplicates from a linked list</li>
+</ol>
+<h3>Stacks and Queues</h3>
+<ol>
+<li>Implement a stack using queues</li>
+<li>Create a queue using two stacks</li>
+<li>Implement a function to evaluate postfix expressions</li>
+<li>Create a function to check if parentheses are balanced</li>
+</ol>
+<h3>Trees and Graphs</h3>
+<ol>
+<li>Implement binary tree level order traversal</li>
+<li>Write a function to validate a binary search tree</li>
+<li>Create a function to find the lowest common ancestor</li>
+<li>Implement Dijkstra's algorithm for shortest path</li>
+</ol>
+<h3>Recursion</h3>
+<ol>
+<li>Solve the N-Queens problem using backtracking</li>
+<li>Implement a function to generate all valid parentheses combinations</li>
+<li>Create a function to solve the Sudoku puzzle</li>
+<li>Write a function to find all paths in a maze</li>
+</ol>
+<h2>Key Takeaways</h2>
+<ul>
+<li>Arrays and strings are fundamental data structures with various manipulation techniques</li>
+<li>Linked lists provide dynamic memory allocation and efficient insertions/deletions</li>
+<li>Stacks (LIFO) and queues (FIFO) are essential for many algorithms</li>
+<li>Trees and graphs are hierarchical data structures with various traversal methods</li>
+<li>Recursion is a powerful technique for solving problems with subproblems</li>
+<li>Understanding time and space complexity is crucial for writing efficient algorithms</li>
+<li>Practice implementing these data structures to build strong programming fundamentals</li>
+</ul>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>

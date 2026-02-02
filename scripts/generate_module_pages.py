@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+"""Build static HTML pages for each module Markdown file."""
+
+from __future__ import annotations
+
+import html
+import re
+from pathlib import Path
+
+import markdown
+
+
+MODULE_TEMPLATE = """<!DOCTYPE html>
+<html lang=\"en\">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module Guide</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>%%MODULE_TITLE%% | Programming Course</title>
+    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
+    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>
+    <link href=\"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap\" rel=\"stylesheet\">
     <style>
         :root {
             --bg: #060b1b;
@@ -87,7 +98,7 @@
             margin: 0.8rem 0 1rem;
         }
 
-        .hero p {
+        .hero p.hero-copy {
             color: var(--muted);
             max-width: 640px;
         }
@@ -109,11 +120,6 @@
             transition: border-color 150ms ease, color 150ms ease;
         }
 
-        .btn svg {
-            width: 1rem;
-            height: 1rem;
-        }
-
         .btn:hover {
             border-color: var(--accent);
             color: var(--accent);
@@ -125,6 +131,11 @@
             padding: 2.25rem;
             border: 1px solid var(--outline);
             box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
         }
 
         .module-shell h2 {
@@ -185,20 +196,6 @@
             100% { opacity: 0.3; transform: scale(0.8); }
         }
 
-        .loader {
-            margin: 3rem auto;
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--accent);
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
         footer {
             text-align: center;
             color: var(--muted);
@@ -220,64 +217,109 @@
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <a class="back-link" href="index.html">⬅ Back to overview</a>
-        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    <div class=\"top-bar\">
+        <a class=\"back-link\" href=\"index.html\">⬅ Back to overview</a>
+        <span class=\"status\"><span class=\"status-dot\"></span>Live module notes</span>
     </div>
 
     <main>
-        <header class="hero">
-            <p class="eyebrow" id="module-label">Module</p>
-            <h1 id="module-title">Module Guide</h1>
-            <p id="module-subtitle">Loading module content…</p>
-            <div class="hero-actions">
-                <a class="btn" id="raw-link" href="#" download>Download Markdown</a>
-                <a class="btn" href="README.md">Full Course Index</a>
+        <header class=\"hero\">
+            <p class=\"eyebrow\">%%MODULE_LABEL%%</p>
+            <h1>%%MODULE_TITLE%%</h1>
+            <p class=\"hero-copy\">%%MODULE_SUBTITLE%%</p>
+            <div class=\"hero-actions\">
+                <a class=\"btn\" href=\"%%MARKDOWN_FILE%%\" download>Download Markdown</a>
+                <a class=\"btn\" href=\"README.md\">Full Course Index</a>
             </div>
         </header>
 
-        <article class="module-shell" id="module-content">
-            <div class="loader" aria-label="Loading"></div>
+        <article class=\"module-shell\">
+            %%MODULE_CONTENT%%
         </article>
     </main>
 
     <footer>
-        Need edits? Update the Markdown file and refresh—this page renders it on the fly.
+        Need edits? Update the Markdown file and rebuild this page.
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const moduleFile = params.get('module') || 'Module1-UnderstandingComputers.md';
-        const moduleTitle = params.get('title') ? decodeURIComponent(params.get('title')) : moduleFile.replace('.md', '').replace(/-/g, ' ');
-        const label = params.get('module') ? params.get('module').split('-')[0] : 'Module 1';
-
-        const moduleTitleEl = document.getElementById('module-title');
-        const moduleSubtitleEl = document.getElementById('module-subtitle');
-        const moduleLabelEl = document.getElementById('module-label');
-        const moduleContentEl = document.getElementById('module-content');
-        const rawLink = document.getElementById('raw-link');
-
-        moduleTitleEl.textContent = moduleTitle;
-        moduleLabelEl.textContent = label;
-        moduleSubtitleEl.textContent = 'Direct notes sourced from ' + moduleFile;
-        rawLink.href = moduleFile;
-
-        async function loadModule() {
-            try {
-                const response = await fetch(moduleFile);
-                if (!response.ok) {
-                    throw new Error('Unable to fetch ' + moduleFile);
-                }
-                const markdown = await response.text();
-                const html = marked.parse(markdown, { mangle: false, headerIds: true, breaks: true });
-                moduleContentEl.innerHTML = html;
-            } catch (err) {
-                moduleContentEl.innerHTML = `<p style="color: var(--accent); font-weight: 600;">${err.message}</p><p>Ensure the file exists at <code>${moduleFile}</code> and that GitHub Pages has been redeployed.</p>`;
-            }
-        }
-
-        loadModule();
-    </script>
 </body>
 </html>
+"""
+
+
+LIST_ITEM = re.compile(r'(?:[-+*]|\d+\.)\s+')
+
+
+def ensure_list_separation(markdown_text: str) -> str:
+    lines = markdown_text.splitlines()
+    fixed: list[str] = []
+
+    for line in lines:
+        stripped = line.lstrip()
+        is_list_line = bool(LIST_ITEM.match(stripped))
+        prev_line = fixed[-1] if fixed else ""
+        prev_is_blank = not prev_line.strip()
+        prev_is_list = bool(LIST_ITEM.match(prev_line.lstrip()))
+
+        if is_list_line and not prev_is_blank and not prev_is_list:
+            fixed.append("")
+
+        fixed.append(line)
+
+    return "\n".join(fixed)
+
+
+def build_pages() -> None:
+    extensions = [
+        'markdown.extensions.fenced_code',
+        'markdown.extensions.tables',
+        'markdown.extensions.sane_lists',
+    ]
+
+    root = Path('.')
+    module_files = sorted(root.glob('Module*.md'))
+    module_files = [p for p in module_files if '-orig' not in p.stem]
+
+    for md_path in module_files:
+        raw_text = md_path.read_text(encoding='utf-8').strip()
+        h1 = re.search(r'^#\s+(.+)', raw_text, re.MULTILINE)
+        h2 = re.search(r'^##\s+(.+)', raw_text, re.MULTILINE)
+
+        module_title = h1.group(1).strip() if h1 else md_path.stem.replace('-', ' ')
+        module_subtitle = h2.group(1).strip() if h2 else f"Direct notes sourced from {md_path.name}"
+
+        label_part = md_path.stem.split('-')[0]
+        match = re.match(r'(Module)(\d+)', label_part)
+        if match:
+            module_label = f"{match.group(1)} {match.group(2)}"
+        else:
+            module_label = label_part.replace('-', ' ')
+
+        body_md = raw_text
+        if h1:
+            start, end = h1.span()
+            body_md = raw_text[:start] + raw_text[end:]
+        body_md = ensure_list_separation(body_md.lstrip('\n'))
+        if not body_md.strip():
+            body_md = raw_text
+
+        module_html = markdown.markdown(body_md, extensions=extensions, output_format='html5')
+
+        replacements = {
+            'MODULE_LABEL': html.escape(module_label),
+            'MODULE_TITLE': html.escape(module_title),
+            'MODULE_SUBTITLE': html.escape(module_subtitle),
+            'MARKDOWN_FILE': md_path.name,
+            'MODULE_CONTENT': module_html,
+        }
+
+        page = MODULE_TEMPLATE
+        for key, value in replacements.items():
+            page = page.replace(f"%%{key}%%", value)
+
+        output_path = md_path.with_suffix('.html')
+        output_path.write_text(page, encoding='utf-8')
+        print(f"Generated {output_path.relative_to(root)}")
+
+
+if __name__ == '__main__':
+    build_pages()

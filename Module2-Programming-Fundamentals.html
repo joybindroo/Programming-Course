@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2: Programming Fundamentals | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 2</p>
+            <h1>Module 2: Programming Fundamentals</h1>
+            <p class="hero-copy">Variables and Data Types</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module2-Programming-Fundamentals.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <h2>Variables and Data Types</h2>
+<h3>Declaring and Assigning Variables</h3>
+<p>Variables are containers for storing data values. In programming, you need to declare a variable before using it, which involves giving it a name and optionally an initial value.</p>
+<pre><code class="language-python"># Variable declaration and assignment
+name = &quot;John&quot;
+age = 25
+height = 5.9
+is_student = True
+</code></pre>
+<h3>Primitive Data Types</h3>
+<p>Primitive data types are the basic building blocks of data manipulation:</p>
+<ul>
+<li><strong>Integers:</strong> Whole numbers (positive, negative, or zero)</li>
+<li>Example: <code>42</code>, <code>-17</code>, <code>0</code></li>
+<li><strong>Floating-point numbers:</strong> Numbers with decimal points</li>
+<li>Example: <code>3.14</code>, <code>-2.5</code>, <code>0.001</code></li>
+<li><strong>Characters:</strong> Single alphanumeric characters</li>
+<li>Example: <code>'A'</code>, <code>'b'</code>, <code>'7'</code></li>
+<li><strong>Booleans:</strong> Logical values representing true or false</li>
+<li>Example: <code>True</code>, <code>False</code></li>
+</ul>
+<h3>Complex Data Types</h3>
+<p>Complex data types can hold multiple values or more complex structures:</p>
+<ul>
+<li><strong>Strings:</strong> Sequences of characters enclosed in quotes</li>
+<li>Example: <code>"Hello, World!"</code>, <code>'Programming'</code></li>
+<li><strong>Arrays:</strong> Ordered collections of elements of the same type</li>
+<li>Example: <code>[1, 2, 3, 4, 5]</code>, <code>["apple", "banana", "orange"]</code></li>
+</ul>
+<h2>Control Flow</h2>
+<h3>Conditional Statements</h3>
+<p>Conditional statements allow your program to make decisions based on different conditions:</p>
+<h4>If-Else Statements</h4>
+<pre><code class="language-python">age = 18
+
+if age &gt;= 18:
+    print(&quot;You are an adult&quot;)
+elif age &gt;= 13:
+    print(&quot;You are a teenager&quot;)
+else:
+    print(&quot;You are a child&quot;)
+</code></pre>
+<h4>Switch-Case Statements</h4>
+<pre><code class="language-python">day = &quot;Monday&quot;
+
+switch (day):
+    case &quot;Monday&quot;:
+        print(&quot;Start of the work week&quot;)
+    case &quot;Friday&quot;:
+        print(&quot;Almost weekend!&quot;)
+    default:
+        print(&quot;Regular day&quot;)
+</code></pre>
+<h3>Loops</h3>
+<p>Loops allow you to execute code repeatedly:</p>
+<h4>For Loops</h4>
+<p>Used when you know how many times you want to iterate:</p>
+<pre><code class="language-python">for i in range(5):
+    print(i)  # Prints 0, 1, 2, 3, 4
+
+fruits = [&quot;apple&quot;, &quot;banana&quot;, &quot;orange&quot;]
+for fruit in fruits:
+    print(fruit)
+</code></pre>
+<h4>While Loops</h4>
+<p>Used when you want to continue until a condition is no longer true:</p>
+<pre><code class="language-python">count = 0
+while count &lt; 5:
+    print(count)
+    count += 1
+</code></pre>
+<h4>Do-While Loops</h4>
+<p>Similar to while loops, but always execute at least once:</p>
+<pre><code class="language-python">count = 0
+do:
+    print(count)
+    count += 1
+while count &lt; 5
+</code></pre>
+<h2>Functions</h2>
+<h3>Defining and Calling Functions</h3>
+<p>Functions are reusable blocks of code that perform specific tasks:</p>
+<pre><code class="language-python">def greet(name):
+    return f&quot;Hello, {name}!&quot;
+
+# Calling the function
+message = greet(&quot;Alice&quot;)
+print(message)  # Output: Hello, Alice!
+</code></pre>
+<h3>Function Parameters and Return Values</h3>
+<p>Functions can accept input (parameters) and return output (return values):</p>
+<pre><code class="language-python">def add_numbers(a, b):
+    sum_result = a + b
+    return sum_result
+
+def calculate_area(length, width):
+    area = length * width
+    return area
+
+# Using functions with parameters
+result = add_numbers(5, 3)  # Returns 8
+room_area = calculate_area(10, 12)  # Returns 120
+</code></pre>
+<p>Functions can also have default parameter values:</p>
+<pre><code class="language-python">def greet(name, greeting=&quot;Hello&quot;):
+    return f&quot;{greeting}, {name}!&quot;
+
+print(greet(&quot;John&quot;))  # Uses default greeting: Hello, John!
+print(greet(&quot;Jane&quot;, &quot;Hi&quot;))  # Uses custom greeting: Hi, Jane!
+</code></pre>
+<h2>Input and Output</h2>
+<h3>Reading Input from the User</h3>
+<p>Getting input from users allows your programs to be interactive:</p>
+<pre><code class="language-python"># Reading string input
+name = input(&quot;Enter your name: &quot;)
+print(f&quot;Hello, {name}!&quot;)
+
+# Reading numeric input
+age = int(input(&quot;Enter your age: &quot;))
+height = float(input(&quot;Enter your height: &quot;))
+</code></pre>
+<h3>Printing Output to the Console</h3>
+<p>Displaying output to users:</p>
+<pre><code class="language-python"># Basic printing
+print(&quot;Hello, World!&quot;)
+
+# Printing variables
+name = &quot;Alice&quot;
+age = 25
+print(name, age)
+
+# Formatted output
+print(f&quot;Name: {name}, Age: {age}&quot;)
+print(&quot;Name: {}, Age: {}&quot;.format(name, age))
+</code></pre>
+<h2>Practice Exercises</h2>
+<ol>
+<li>Create a program that asks for the user's age and tells them if they can vote</li>
+<li>Write a function that calculates the area of a circle</li>
+<li>Create a loop that prints numbers from 1 to 100, but only even numbers</li>
+<li>Build a simple calculator that takes two numbers and an operator as input</li>
+<li>Write a program that converts temperature from Celsius to Fahrenheit</li>
+</ol>
+<h2>Key Takeaways</h2>
+<ul>
+<li>Variables store data and have specific data types</li>
+<li>Control flow statements allow programs to make decisions and repeat actions</li>
+<li>Functions organize code into reusable blocks</li>
+<li>Input/output operations enable user interaction</li>
+<li>Master these fundamentals before moving to more complex topics</li>
+</ul>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>

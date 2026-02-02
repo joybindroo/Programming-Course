@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3: Object-Oriented Programming (OOP) | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 3</p>
+            <h1>Module 3: Object-Oriented Programming (OOP)</h1>
+            <p class="hero-copy">Core Concepts of OOP</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module3-OOP.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <h2>Core Concepts of OOP</h2>
+<h3>What is Object-Oriented Programming?</h3>
+<p>Object-Oriented Programming is a programming paradigm based on the concept of "objects," which can contain data and code. OOP models real-world entities and their interactions, making code more organized, reusable, and easier to maintain.</p>
+<h3>Classes and Objects: Building Blocks of OOP</h3>
+<h4>Classes</h4>
+<p>A class is a blueprint or template for creating objects. It defines properties (attributes) and behaviors (methods) that objects of that class will have.</p>
+<p><strong>Example Class Definition:</strong></p>
+<pre><code class="language-python">class Car:
+    # Class attributes
+    wheels = 4
+
+    # Constructor method
+    def __init__(self, make, model, year):
+        self.make = make      # Instance attribute
+        self.model = model    # Instance attribute
+        self.year = year      # Instance attribute
+        self.is_running = False
+
+    # Instance methods
+    def start_engine(self):
+        self.is_running = True
+        print(f&quot;The {self.make} {self.model}'s engine is running&quot;)
+
+    def stop_engine(self):
+        self.is_running = False
+        print(f&quot;The {self.make} {self.model}'s engine is stopped&quot;)
+
+    def drive(self, distance):
+        if self.is_running:
+            print(f&quot;Driving {distance} miles&quot;)
+        else:
+            print(&quot;Start the engine first!&quot;)
+</code></pre>
+<h4>Objects</h4>
+<p>An object is an instance of a class. It has its own state and behavior defined by the class.</p>
+<p><strong>Creating Objects:</strong></p>
+<pre><code class="language-python"># Creating objects (instances) of the Car class
+car1 = Car(&quot;Toyota&quot;, &quot;Camry&quot;, 2022)
+car2 = Car(&quot;Honda&quot;, &quot;Accord&quot;, 2023)
+
+# Using objects
+car1.start_engine()  # Output: The Toyota Camry's engine is running
+car1.drive(50)        # Output: Driving 50 miles
+
+car2.drive(30)        # Output: Start the engine first!
+car2.start_engine()
+car2.drive(30)        # Output: Driving 30 miles
+</code></pre>
+<h3>Encapsulation: Data Hiding and Information Protection</h3>
+<p>Encapsulation is the bundling of data (attributes) and methods that operate on the data into a single unit (class). It also involves restricting direct access to some of an object's components.</p>
+<h4>Public and Private Members</h4>
+<pre><code class="language-python">class BankAccount:
+    def __init__(self, account_number, initial_balance):
+        self.account_number = account_number  # Public attribute
+        self.__balance = initial_balance      # Private attribute
+
+    def deposit(self, amount):
+        if amount &gt; 0:
+            self.__balance += amount
+            print(f&quot;Deposited ${amount}. New balance: ${self.__balance}&quot;)
+
+    def withdraw(self, amount):
+        if 0 &lt; amount &lt;= self.__balance:
+            self.__balance -= amount
+            print(f&quot;Withdrew ${amount}. New balance: ${self.__balance}&quot;)
+        else:
+            print(&quot;Invalid withdrawal amount&quot;)
+
+    def get_balance(self):
+        return self.__balance  # Controlled access to private data
+
+# Usage
+account = BankAccount(&quot;123456789&quot;, 1000)
+account.deposit(500)    # Output: Deposited $500. New balance: $1500
+account.withdraw(200)   # Output: Withdrew $200. New balance: $1300
+
+# Can't directly access private attribute
+# print(account.__balance)  # This would cause an error
+print(account.get_balance())  # Output: 1300
+</code></pre>
+<h3>Inheritance: Creating Hierarchies of Classes</h3>
+<p>Inheritance allows a class (child class) to inherit attributes and methods from another class (parent class). This promotes code reuse and creates logical hierarchies.</p>
+<h4>Single Inheritance</h4>
+<pre><code class="language-python">class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def eat(self):
+        print(f&quot;{self.name} is eating&quot;)
+
+    def sleep(self):
+        print(f&quot;{self.name} is sleeping&quot;)
+
+# Dog inherits from Animal
+class Dog(Animal):
+    def __init__(self, name, breed):
+        # Call parent constructor
+        super().__init__(name)
+        self.breed = breed
+
+    def bark(self):
+        print(f&quot;{self.name} is barking&quot;)
+
+    # Override parent method
+    def eat(self):
+        print(f&quot;{self.name} the {self.breed} is eating dog food&quot;)
+
+# Usage
+dog = Dog(&quot;Buddy&quot;, &quot;Golden Retriever&quot;)
+dog.eat()      # Output: Buddy the Golden Retriever is eating dog food
+dog.sleep()    # Output: Buddy is sleeping
+dog.bark()     # Output: Buddy is barking
+</code></pre>
+<h4>Multiple Inheritance</h4>
+<pre><code class="language-python">class Flyable:
+    def fly(self):
+        print(&quot;Flying in the sky&quot;)
+
+class Swimmable:
+    def swim(self):
+        print(&quot;Swimming in water&quot;)
+
+class Duck(Flyable, Swimmable):
+    def quack(self):
+        print(&quot;Quack! Quack!&quot;)
+
+# Usage
+duck = Duck()
+duck.fly()   # Output: Flying in the sky
+duck.swim()  # Output: Swimming in water
+duck.quack() # Output: Quack! Quack!
+</code></pre>
+<h3>Polymorphism: Code Reuse and Flexibility</h3>
+<p>Polymorphism allows objects of different classes to be treated as objects of a common parent class. It enables "one interface, multiple implementations."</p>
+<h4>Method Overriding</h4>
+<pre><code class="language-python">class Shape:
+    def area(self):
+        pass
+
+    def perimeter(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+    def perimeter(self):
+        return 2 * 3.14 * self.radius
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+# Polymorphic function
+def print_shape_info(shape):
+    print(f&quot;Area: {shape.area()}&quot;)
+    print(f&quot;Perimeter: {shape.perimeter()}&quot;)
+
+# Usage
+circle = Circle(5)
+rectangle = Rectangle(4, 6)
+
+print_shape_info(circle)     # Works for Circle
+print_shape_info(rectangle)  # Works for Rectangle
+</code></pre>
+<h4>Duck Typing</h4>
+<pre><code class="language-python">class Guitar:
+    def play(self):
+        print(&quot;Playing guitar: Strum strum&quot;)
+
+class Piano:
+    def play(self):
+        print(&quot;Playing piano: Plink plonk&quot;)
+
+class Drum:
+    def beat(self):
+        print(&quot;Beating drums: Boom boom&quot;)
+
+# Function that works with any object that has a play method
+def perform(musician):
+    musician.play()
+
+# Usage
+guitarist = Guitar()
+pianist = Piano()
+drummer = Drum()
+
+perform(guitarist)  # Output: Playing guitar: Strum strum
+perform(pianist)    # Output: Playing piano: Plink plonk
+# perform(drummer)  # This would cause an error - no play method
+</code></pre>
+<h2>Designing Object-Oriented Systems</h2>
+<h3>Modeling Real-World Problems with OOP</h3>
+<h4>Identifying Objects and Their Relationships</h4>
+<p><strong>Steps for OOP Design:</strong></p>
+<ol>
+<li><strong>Identify Nouns:</strong> Look for nouns in the problem description to identify potential classes</li>
+<li><strong>Identify Verbs:</strong> Look for verbs to identify potential methods</li>
+<li><strong>Define Attributes:</strong> Determine what properties each object needs</li>
+<li><strong>Establish Relationships:</strong> Define how objects interact with each other</li>
+</ol>
+<p><strong>Example: Library Management System</strong></p>
+<pre><code>Problem: A library needs to track books, members, and loans.
+Members can borrow books, and the system should track due dates.
+</code></pre>
+<p><strong>Identified Classes:</strong></p>
+<ul>
+<li><code>Book</code>: Represents library books</li>
+<li><code>Member</code>: Represents library members</li>
+<li><code>Loan</code>: Represents book loans</li>
+<li><code>Library</code>: Manages the overall system</li>
+</ul>
+<h3>Creating Class Diagrams</h3>
+<p>Class diagrams visualize the structure and relationships between classes.</p>
+<p><strong>Notation:</strong></p>
+<ul>
+<li><strong>Class Name:</strong> Top compartment</li>
+<li><strong>Attributes:</strong> Middle compartment</li>
+<li><strong>Methods:</strong> Bottom compartment</li>
+<li><strong>Relationships:</strong> Lines with symbols (inheritance: arrow, association: line)</li>
+</ul>
+<p><strong>Example Class Diagram:</strong></p>
+<pre><code>+----------------+       +----------------+       +----------------+
+|    Library     |       |      Book      |       |     Member     |
++----------------+       +----------------+       +----------------+
+| -name: String  |       | -title: String |       | -name: String  |
+| -address: Str  |       | -author: String|       | -member_id: Int|
+| -books: List   |       | -isbn: String  |       | -loans: List   |
++----------------+       +----------------+       +----------------+
+| +add_book()    |       | +get_title()   |       | +borrow_book() |
+| +find_book()   |       | +is_available()|       | +return_book() |
+| +register_member()|     | +checkout()    |       | +get_loans()   |
++----------------+       +----------------+       +----------------+
+       |                         |                         |
+       |1                        |*                        |*
+       +-------------------------+-------------------------+
+                          |
+                     +-----------+
+                     |    Loan   |
+                     +-----------+
+                     | -due_date:|
+                     | -book:    |
+                     | -member:  |
+                     +-----------+
+                     | +is_overdue() |
+                     | +extend()     |
+                     +-----------+
+</code></pre>
+<h3>Implementation Example</h3>
+<pre><code class="language-python">from datetime import datetime, timedelta
+
+class Book:
+    def __init__(self, title, author, isbn):
+        self.title = title
+        self.author = author
+        self.isbn = isbn
+        self.is_available = True
+
+    def checkout(self):
+        if self.is_available:
+            self.is_available = False
+            return True
+        return False
+
+    def return_book(self):
+        self.is_available = True
+
+class Member:
+    def __init__(self, name, member_id):
+        self.name = name
+        self.member_id = member_id
+        self.borrowed_books = []
+
+    def borrow_book(self, book):
+        if book.checkout():
+            self.borrowed_books.append(book)
+            return True
+        return False
+
+    def return_book(self, book):
+        if book in self.borrowed_books:
+            book.return_book()
+            self.borrowed_books.remove(book)
+
+class Loan:
+    def __init__(self, book, member, days=14):
+        self.book = book
+        self.member = member
+        self.due_date = datetime.now() + timedelta(days=days)
+        self.returned = False
+
+    def is_overdue(self):
+        return not self.returned and datetime.now() &gt; self.due_date
+
+    def extend(self, days=7):
+        if not self.returned:
+            self.due_date += timedelta(days=days)
+
+class Library:
+    def __init__(self, name, address):
+        self.name = name
+        self.address = address
+        self.books = []
+        self.members = []
+        self.loans = []
+
+    def add_book(self, book):
+        self.books.append(book)
+
+    def register_member(self, member):
+        self.members.append(member)
+
+    def find_book(self, title):
+        for book in self.books:
+            if book.title.lower() == title.lower() and book.is_available:
+                return book
+        return None
+
+    def process_loan(self, member_id, book_title):
+        member = next((m for m in self.members if m.member_id == member_id), None)
+        book = self.find_book(book_title)
+
+        if member and book:
+            if member.borrow_book(book):
+                loan = Loan(book, member)
+                self.loans.append(loan)
+                return f&quot;Book '{book.title}' loaned to {member.name}&quot;
+            else:
+                return &quot;Book not available&quot;
+        return &quot;Invalid member or book&quot;
+
+# Usage
+library = Library(&quot;City Library&quot;, &quot;123 Main St&quot;)
+
+# Add books
+book1 = Book(&quot;Python Programming&quot;, &quot;John Smith&quot;, &quot;123456789&quot;)
+book2 = Book(&quot;OOP Concepts&quot;, &quot;Jane Doe&quot;, &quot;987654321&quot;)
+library.add_book(book1)
+library.add_book(book2)
+
+# Register members
+member1 = Member(&quot;Alice&quot;, &quot;M001&quot;)
+member2 = Member(&quot;Bob&quot;, &quot;M002&quot;)
+library.register_member(member1)
+library.register_member(member2)
+
+# Process loans
+print(library.process_loan(&quot;M001&quot;, &quot;Python Programming&quot;))
+print(library.process_loan(&quot;M002&quot;, &quot;Python Programming&quot;))  # Already borrowed
+</code></pre>
+<h2>OOP Design Principles</h2>
+<h3>SOLID Principles</h3>
+<ol>
+<li><strong>Single Responsibility Principle:</strong> A class should have only one reason to change</li>
+<li><strong>Open/Closed Principle:</strong> Classes should be open for extension, closed for modification</li>
+<li><strong>Liskov Substitution Principle:</strong> Subtypes must be substitutable for their base types</li>
+<li><strong>Interface Segregation Principle:</strong> Clients shouldn't depend on interfaces they don't use</li>
+<li><strong>Dependency Inversion Principle:</strong> Depend on abstractions, not concretions</li>
+</ol>
+<h3>Composition over Inheritance</h3>
+<pre><code class="language-python"># Instead of deep inheritance hierarchies, use composition
+class Engine:
+    def start(self):
+        print(&quot;Engine started&quot;)
+
+class GPS:
+    def navigate(self, destination):
+        print(f&quot;Navigating to {destination}&quot;)
+
+class Car:
+    def __init__(self):
+        self.engine = Engine()  # Composition
+        self.gps = GPS()        # Composition
+
+    def start_journey(self, destination):
+        self.engine.start()
+        self.gps.navigate(destination)
+
+# This is more flexible than deep inheritance
+</code></pre>
+<h2>Practice Exercises</h2>
+<h3>Basic OOP Concepts</h3>
+<ol>
+<li>Create a <code>Person</code> class with name, age, and a <code>celebrate_birthday()</code> method</li>
+<li>Implement a <code>BankAccount</code> class with deposit, withdraw, and balance checking</li>
+<li>Create a hierarchy of shapes (Circle, Rectangle, Triangle) inheriting from a base <code>Shape</code> class</li>
+</ol>
+<h3>Intermediate OOP</h3>
+<ol>
+<li>Design a simple e-commerce system with Product, Cart, and Customer classes</li>
+<li>Implement a file system with File, Folder, and Directory classes</li>
+<li>Create a game with Player, Enemy, and Game classes</li>
+</ol>
+<h3>Advanced OOP</h3>
+<ol>
+<li>Design a restaurant management system with Order, MenuItem, Staff, and Customer classes</li>
+<li>Implement a social media system with User, Post, Comment, and Notification classes</li>
+<li>Create a simulation of a traffic system with Vehicle, Road, and TrafficLight classes</li>
+</ol>
+<h2>Key Takeaways</h2>
+<ul>
+<li>OOP models real-world entities using classes and objects</li>
+<li>Encapsulation protects data and controls access</li>
+<li>Inheritance promotes code reuse and creates logical hierarchies</li>
+<li>Polymorphism allows flexible code that works with different object types</li>
+<li>Good OOP design follows established principles like SOLID</li>
+<li>Composition is often more flexible than deep inheritance hierarchies</li>
+<li>Practice identifying objects, their attributes, and their relationships to design effective systems</li>
+</ul>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>
