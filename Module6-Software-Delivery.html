@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 6: Software Delivery &amp; DevOps | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 6</p>
+            <h1>Module 6: Software Delivery &amp; DevOps</h1>
+            <p class="hero-copy">Learning Outcomes</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module6-Software-Delivery.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <p>This module turns advanced engineering work into durable, observable, and continuously deployable systems. You will master the tooling and mindsets required to ship, monitor, and evolve production services.</p>
+<h2>Learning Outcomes</h2>
+<ul>
+<li>Design CI/CD pipelines that gate changes with automated tests, quality gates, and approvals.</li>
+<li>Manage infrastructure as code (IaC) for consistent environments across dev, staging, and prod.</li>
+<li>Package, deploy, and observe services with containers, orchestration, and telemetry stacks.</li>
+<li>Embed security, resilience, and incident-response practices throughout the delivery lifecycle.</li>
+</ul>
+<hr>
+<h2>Section 1 – Release Engineering &amp; CI/CD</h2>
+<h3>Key Concepts</h3>
+<ul>
+<li><strong>Branching &amp; Release Strategies:</strong> Trunk-based vs GitFlow, feature flags, and release trains.</li>
+<li><strong>Automated Quality Gates:</strong> Unit/integration tests, linting, static analysis, and code coverage thresholds.</li>
+<li><strong>Artifacts &amp; Versioning:</strong> Build once, promote many; semantic versioning, SBOM generation.</li>
+</ul>
+<pre><code class="language-yaml"># .github/workflows/ci.yml (conceptual snippet)
+name: service-ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r requirements.txt
+      - run: pytest --maxfail=1 --disable-warnings
+</code></pre>
+<h3>Lab</h3>
+<ol>
+<li>Build a GitHub Actions workflow that compiles, tests, and publishes coverage reports.</li>
+<li>Add required status checks before merging to <code>main</code>.</li>
+</ol>
+<hr>
+<h2>Section 2 – Infrastructure as Code (IaC)</h2>
+<h3>Tooling &amp; Practices</h3>
+<ul>
+<li>Declarative IaC (Terraform, Pulumi) vs configuration management (Ansible, Chef).</li>
+<li>Module decomposition, variables, and remote state backends for collaborative teams.</li>
+<li>Secrets handling (Vault, SSM, sealed secrets) and least-privilege credentials.</li>
+</ul>
+<h3>Exercise</h3>
+<p>Provision a staging environment:</p>
+<ol>
+<li>VPC + subnets + security groups.</li>
+<li>Managed database + parameterized storage.</li>
+<li>Outputs consumed by CI/CD to wire service endpoints.</li>
+</ol>
+<hr>
+<h2>Section 3 – Containerization &amp; Orchestration</h2>
+<h3>Containers 101</h3>
+<ul>
+<li>Author minimal Dockerfiles with multi-stage builds, health checks, and non-root users.</li>
+<li>Apply image scanning (Trivy, Grype) and tagging heuristics (<code>v1.4.0</code>, <code>sha256</code>).</li>
+</ul>
+<h3>Orchestration Options</h3>
+<ul>
+<li>Docker Compose for local multi-service workflows.</li>
+<li>Kubernetes primitives (Deployment, Service, Ingress, ConfigMap, Secret) and Helm charts.</li>
+<li>Serverless alternatives (Cloud Run, Lambda, Azure Functions) for event-driven workloads.</li>
+</ul>
+<h3>Workshop</h3>
+<p>Deploy the Module 5 capstone backend as a containerized service:</p>
+<ol>
+<li>Build an image pipeline with cache-friendly layers.</li>
+<li>Publish to a registry (GHCR, ECR, ACR).</li>
+<li>Ship to Kubernetes with rolling updates and probes.</li>
+</ol>
+<hr>
+<h2>Section 4 – Observability &amp; Incident Response</h2>
+<h3>Telemetry Stack</h3>
+<ul>
+<li><strong>Metrics:</strong> RED/USE metrics, Prometheus scraping, alert thresholds, SLO/SLA definitions.</li>
+<li><strong>Logs:</strong> Structured JSON, correlation IDs, centralized log aggregation (ELK, Loki).</li>
+<li><strong>Traces:</strong> OpenTelemetry instrumentation, sampling strategies, distributed tracing viewers.</li>
+</ul>
+<h3>Incident Workflow</h3>
+<ul>
+<li>On-call rotations, runbooks, and blameless postmortems.</li>
+<li>Automation for paging, chatops commands, and status page updates.</li>
+</ul>
+<h3>Drill</h3>
+<p>Simulate a latency spike:</p>
+<ol>
+<li>Trigger alerts via load testing.</li>
+<li>Trace the bottleneck through dashboards/logs.</li>
+<li>Document a post-incident timeline with corrective actions.</li>
+</ol>
+<hr>
+<h2>Section 5 – Security &amp; Compliance</h2>
+<h3>Shift-Left Security</h3>
+<ul>
+<li>Dependency scanning (Dependabot, Snyk), SAST/DAST, container image policies.</li>
+<li>Secrets detection in CI, commit hooks, and policy-as-code (OPA, Sentinel).</li>
+</ul>
+<h3>Governance</h3>
+<ul>
+<li>Access reviews, infrastructure drift detection, and audit trails.</li>
+<li>Data residency, encryption (TLS, KMS, envelope encryption) and compliance mapping (SOC 2, ISO 27001).</li>
+</ul>
+<hr>
+<h2>Section 6 – Resilience &amp; Progressive Delivery</h2>
+<h3>Deployment Strategies</h3>
+<ul>
+<li>Blue/green, canary, and rolling strategies with automated rollback triggers.</li>
+<li>Feature flags and A/B testing to decouple deploy from release.</li>
+</ul>
+<h3>Chaos &amp; Reliability Engineering</h3>
+<ul>
+<li>Inject failure (latency, packet loss, node kill) with tools like Gremlin or Chaos Mesh.</li>
+<li>GameDays to practice mitigation playbooks.</li>
+</ul>
+<hr>
+<h2>Capstone: Production-Ready Launch</h2>
+<p>Build on Modules 4–5 by shipping a multi-service product with the following deliverables:</p>
+<ol>
+<li><strong>CI/CD Pipeline:</strong> Automated tests, security scans, deploy to staging + prod with approvals.</li>
+<li><strong>IaC + Containers:</strong> Terraform (or equivalent) for cloud resources; Docker images deployed via Kubernetes manifests or serverless configs.</li>
+<li><strong>Observability:</strong> Dashboards tracking latency, errors, saturation; alerting hooked to on-call channels.</li>
+<li><strong>Resilience Plan:</strong> Documented rollback plan, feature-flag strategy, and chaos test results.</li>
+<li><strong>Security Checklist:</strong> Dependency reports, secrets handling notes, and access reviews.</li>
+</ol>
+<p>Document everything in an architecture decision record (ADR) and record a short demo walk-through explaining how the system moves from commit to production safely.</p>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>

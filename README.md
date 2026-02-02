@@ -90,6 +90,46 @@
 * **Systems Integration Capstone:**
     * Combine multiple disciplines (web, mobile, ML, realtime) into a documented end-to-end project
 
+## **Module 6: Software Delivery & DevOps**
+
+[**Software Delivery & DevOps**](./Module6-Software-Delivery.md)
+
+* **Release Engineering & CI/CD:**
+    * Branching strategies, automated quality gates, artifact versioning
+* **Infrastructure as Code:**
+    * Terraform/Pulumi patterns, secrets hygiene, environment parity
+* **Containers & Orchestration:**
+    * Docker best practices, Kubernetes/serverless deployment workflows
+* **Observability & Incident Response:**
+    * Metrics, logs, traces, alerting, on-call playbooks
+* **Security & Compliance:**
+    * Shift-left security scans, policy-as-code, audit readiness
+* **Resilience & Progressive Delivery:**
+    * Blue/green, canary, chaos engineering, feature flags
+* **Delivery Capstone:**
+    * Ship a production-ready version of the Module 5 project with CI/CD, IaC, telemetry, and rollback plans
+
+## **Module 7: Docker Mastery**
+
+[**Docker Mastery**](./Module7-Docker-Deep-Dive.md)
+
+* **Installation & Verification:**
+    * `docker version`, `docker info`, registry auth workflows, engine health checks
+* **Context Management:**
+    * Create, inspect, and switch between local/SSH/cloud contexts for remote control
+* **Image & Registry Operations:**
+    * `docker build`, `docker pull/push`, `docker tag`, `docker save/load`, SBOM-friendly pipelines
+* **Container Lifecycle & Observability:**
+    * `docker run`, `docker ps`, `docker stop/start`, `docker logs`, `docker stats`, `docker system df/prune`
+* **Storage & Networking:**
+    * `docker network ls/create`, `docker volume ls/create`, attaching services to custom bridges and volumes
+* **Compose & Multi-Service Apps:**
+    * `docker compose up/down/logs`, scaling patterns, rebuilding images in place
+* **Security & Distribution:**
+    * `docker scan`, least-privilege flags, shipping artifacts across contexts with confidence
+* **Command Checklist:**
+    * Includes 30+ essential Docker CLI commands from installation through production operations
+
 **Note:**
 
 * **Language-Agnostic Approach:** While specific programming languages (like Python, Java, C++) will be used to implement concepts, the focus will be on understanding the underlying principles.

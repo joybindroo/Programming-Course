@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 7: Docker Mastery | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 7</p>
+            <h1>Module 7: Docker Mastery</h1>
+            <p class="hero-copy">Learning Objectives</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module7-Docker-Deep-Dive.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <p>This module delivers an end-to-end walkthrough of Docker—from installation and context management to day-two operations and delivery pipelines. Expect practical labs plus a toolbox of commands you will use daily when packaging and shipping software.</p>
+<h2>Learning Objectives</h2>
+<ul>
+<li>Install Docker Engine, verify health, and authenticate to registries securely.</li>
+<li>Manage contexts, images, and containers across local machines, remote hosts, or the cloud.</li>
+<li>Monitor resource usage, inspect runtime state, and collect diagnostics for incident response.</li>
+<li>Compose multi-service applications and move artifacts between environments confidently.</li>
+</ul>
+<hr>
+<h2>1. Installing &amp; Verifying Docker</h2>
+<ol>
+<li><strong>Install (Linux example):</strong></li>
+</ol>
+<pre><code class="language-bash">curl -fsSL https://get.docker.com | sh
+sudo usermod -aG docker &quot;$USER&quot;
+</code></pre>
+<ol start="2">
+<li><strong>Verify Engine &amp; Client:</strong> <code>docker version</code></li>
+<li><strong>Check Daemon Health:</strong> <code>docker info</code></li>
+<li><strong>Log In to Registry:</strong> <code>docker login registry.example.com</code></li>
+<li><strong>Log Out When Done:</strong> <code>docker logout registry.example.com</code></li>
+</ol>
+<blockquote>
+<p>Tip: keep <code>~/.docker/config.json</code> under source control only if it excludes credentials; use credential helpers otherwise.</p>
+</blockquote>
+<hr>
+<h2>2. Contexts &amp; Environment Switching</h2>
+<p>Docker contexts let you target local, remote (SSH), or cloud endpoints without reconfiguring env vars.</p>
+<ul>
+<li><strong>List contexts:</strong> <code>docker context ls</code></li>
+<li><strong>Inspect details:</strong> <code>docker context inspect default</code></li>
+<li><strong>Create remote context:</strong></li>
+</ul>
+<pre><code class="language-bash">docker context create prod --docker &quot;host=ssh://ops@prod.cluster&quot;
+</code></pre>
+<ul>
+<li><strong>Switch context:</strong> <code>docker context use prod</code></li>
+<li><strong>Check current:</strong> <code>docker context show</code></li>
+</ul>
+<p>Lab: provision a remote VM, create a context via SSH, run <code>docker ps</code> to verify remote control.</p>
+<hr>
+<h2>3. Images &amp; Registries</h2>
+<ul>
+<li><strong>Search or list local caches:</strong> <code>docker images</code></li>
+<li><strong>Pull specific tag:</strong> <code>docker pull redis:7.2-alpine</code></li>
+<li><strong>Build immutable image:</strong> <code>docker build -t acme/api:1.4.0 .</code></li>
+<li><strong>Tag for another registry:</strong> <code>docker tag acme/api:1.4.0 ghcr.io/acme/api:1.4.0</code></li>
+<li><strong>Push artifact:</strong> <code>docker push ghcr.io/acme/api:1.4.0</code></li>
+<li><strong>Remove unused image:</strong> <code>docker rmi acme/api:1.3.0</code></li>
+<li><strong>Export/import tarballs:</strong></li>
+</ul>
+<pre><code class="language-bash">docker save ghcr.io/acme/api:1.4.0 -o api.tar
+docker load -i api.tar
+</code></pre>
+<p>Practice: design a multi-stage Dockerfile that compiles code, copies artifacts into a runtime image, and publishes to GHCR.</p>
+<hr>
+<h2>4. Container Lifecycle Commands</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Run container interactively</td>
+<td><code>docker run -it --rm ubuntu:24.04 bash</code></td>
+</tr>
+<tr>
+<td>Run detatched service</td>
+<td><code>docker run -d --name web -p 8080:80 nginx:1.25</code></td>
+</tr>
+<tr>
+<td>List running containers</td>
+<td><code>docker ps</code></td>
+</tr>
+<tr>
+<td>List all (including exited)</td>
+<td><code>docker ps -a</code></td>
+</tr>
+<tr>
+<td>Stop gracefully</td>
+<td><code>docker stop web</code></td>
+</tr>
+<tr>
+<td>Start existing</td>
+<td><code>docker start web</code></td>
+</tr>
+<tr>
+<td>Remove container</td>
+<td><code>docker rm web</code></td>
+</tr>
+<tr>
+<td>Copy files</td>
+<td><code>docker cp backup.sql db:/tmp/backup.sql</code></td>
+</tr>
+<tr>
+<td>Execute command</td>
+<td><code>docker exec -it db psql -U postgres</code></td>
+</tr>
+<tr>
+<td>Inspect metadata</td>
+<td><code>docker inspect web</code></td>
+</tr>
+</tbody>
+</table>
+<p>Exercise: wrap these commands into Makefile targets (<code>make up</code>, <code>make down</code>, <code>make logs</code>).</p>
+<hr>
+<h2>5. Observability, Stats &amp; Cleanup</h2>
+<ul>
+<li><strong>Tail logs:</strong> <code>docker logs -f web</code></li>
+<li><strong>Live resource usage:</strong> <code>docker stats</code></li>
+<li><strong>System disk usage:</strong> <code>docker system df</code></li>
+<li><strong>Aggressive cleanup:</strong> <code>docker system prune --all --volumes</code></li>
+<li><strong>Container-specific metrics:</strong> <code>docker inspect --format '{{json .HostConfig}}' web</code></li>
+</ul>
+<p>Workshop: create an alert when <code>docker stats</code> shows memory over 80% for more than 1 minute (use shell scripting + <code>awk</code>).</p>
+<hr>
+<h2>6. Networking &amp; Volumes</h2>
+<ul>
+<li><strong>List networks:</strong> <code>docker network ls</code></li>
+<li><strong>Create bridge network:</strong> <code>docker network create app-net</code></li>
+<li><strong>Connect service to network:</strong> <code>docker network connect app-net web</code></li>
+<li><strong>List volumes:</strong> <code>docker volume ls</code></li>
+<li><strong>Create named volume:</strong> <code>docker volume create pgdata</code></li>
+<li><strong>Inspect volume:</strong> <code>docker volume inspect pgdata</code></li>
+</ul>
+<p>Lab: run PostgreSQL with <code>-v pgdata:/var/lib/postgresql/data</code> on <code>app-net</code>, then attach an app container to query it.</p>
+<hr>
+<h2>7. Docker Compose &amp; Multi-Service Apps</h2>
+<ul>
+<li><strong>Launch stack:</strong> <code>docker compose up -d</code></li>
+<li><strong>View status:</strong> <code>docker compose ps</code></li>
+<li><strong>Stream logs:</strong> <code>docker compose logs -f api</code></li>
+<li><strong>Scale service:</strong> <code>docker compose up -d --scale worker=3</code></li>
+<li><strong>Apply config changes:</strong> <code>docker compose up -d --build</code></li>
+<li><strong>Remove stack:</strong> <code>docker compose down --volumes --remove-orphans</code></li>
+</ul>
+<p>Mini-project: convert the Module 5 capstone into a Compose stack with API, worker, database, and monitoring sidecars.</p>
+<hr>
+<h2>8. Security &amp; Policy Checks</h2>
+<ul>
+<li><strong>Scan image for CVEs (example using <code>docker scan</code>):</strong> <code>docker scan acme/api:1.4.0</code></li>
+<li><strong>Least privilege run:</strong> <code>docker run --cap-drop ALL --read-only ...</code></li>
+<li><strong>Verify signatures (Docker Content Trust example):</strong> <code>docker trust inspect --pretty ghcr.io/acme/api:1.4.0</code></li>
+</ul>
+<p>Encourage integrating scans into CI (see Module 6) so every build fails on critical CVEs.</p>
+<hr>
+<h2>9. Distribution &amp; Context-Aware Deploys</h2>
+<ul>
+<li><strong>Save runtime stats before switching:</strong> <code>docker stats --no-stream</code></li>
+<li><strong>Switch back to local context:</strong> <code>docker context use default</code></li>
+<li><strong>Deploy via remote context:</strong> <code>docker --context prod compose up -d</code></li>
+<li><strong>Check remote logs:</strong> <code>docker --context prod compose logs -f ingress</code></li>
+</ul>
+<p>Capstone challenge: orchestrate a blue/green deployment using two contexts (<code>prod-blue</code>, <code>prod-green</code>), Compose stacks, and <code>docker context use</code> to flip traffic.</p>
+<hr>
+<h2>Command Checklist (30+ references)</h2>
+<ol>
+<li><code>docker version</code></li>
+<li><code>docker info</code></li>
+<li><code>docker login</code></li>
+<li><code>docker logout</code></li>
+<li><code>docker context ls</code></li>
+<li><code>docker context inspect</code></li>
+<li><code>docker context create</code></li>
+<li><code>docker context use</code></li>
+<li><code>docker context show</code></li>
+<li><code>docker images</code></li>
+<li><code>docker pull</code></li>
+<li><code>docker build</code></li>
+<li><code>docker tag</code></li>
+<li><code>docker push</code></li>
+<li><code>docker rmi</code></li>
+<li><code>docker save</code></li>
+<li><code>docker load</code></li>
+<li><code>docker run</code></li>
+<li><code>docker ps</code></li>
+<li><code>docker ps -a</code></li>
+<li><code>docker stop</code></li>
+<li><code>docker start</code></li>
+<li><code>docker rm</code></li>
+<li><code>docker logs</code></li>
+<li><code>docker exec</code></li>
+<li><code>docker cp</code></li>
+<li><code>docker inspect</code></li>
+<li><code>docker stats</code></li>
+<li><code>docker system df</code></li>
+<li><code>docker system prune</code></li>
+<li><code>docker network ls</code></li>
+<li><code>docker network create</code></li>
+<li><code>docker volume ls</code></li>
+<li><code>docker volume create</code></li>
+<li><code>docker compose up</code></li>
+<li><code>docker compose logs</code></li>
+<li><code>docker compose down</code></li>
+<li><code>docker scan</code></li>
+</ol>
+<p>Keep this checklist handy when building labs or troubleshooting production workloads.</p>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>
