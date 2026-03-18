@@ -60,6 +60,22 @@ The repo ships with a Python helper so you never edit the HTML by hand.
 3. If you add new CTAs or reference links, keep styling consistent with existing classes (`btn primary`, `btn secondary`).
 
 ## Adding a New Module
+
+### GitHub Flow for Module Authoring
+1. **Sync main**: `git checkout main && git pull`.
+2. **Create a feature branch**: `git checkout -b feature/moduleX` (replace `moduleX` with a descriptive name, e.g., `module9-distributed-systems`).
+3. **Add or edit module files**: create new `ModuleX-Name.md` or modify existing ones.
+4. **Update related docs**: adjust `README.md` and `index.html` as needed.
+5. **Generate HTML**: `python scripts/generate_module_pages.py`.
+6. **Stage changes**: `git add .` (or specific files).
+7. **Commit**: `git commit -m "feat(moduleX): add/update Module X – brief description"`.
+8. **Push branch**: `git push -u origin feature/moduleX`.
+9. **Open a Pull Request** on GitHub targeting `main`.
+10. **Review & merge** the PR via GitHub.
+11. **Sync local main**: `git checkout main && git pull`.
+12. **Delete the feature branch** locally: `git branch -d feature/moduleX` (optional remote delete: `git push origin --delete feature/moduleX`).
+
+*For editing an existing module, follow the same steps, using a branch name that reflects the change (e.g., `feature/moduleX-update`).*
 1. **Create Markdown**
    - Copy the naming pattern `Module6-Topic.md`.
    - Start with a level-1 heading (`# Module 6: Topic Name`).
