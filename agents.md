@@ -18,6 +18,7 @@ This repository powers the "Programming Course" GitHub Pages site (`https://joyb
 6. Module 6 – Software Delivery & DevOps
 7. Module 7 – Docker Mastery
 8. Module 8 – Database Programming & Tooling
+9. Module 9 – Distributed Systems
 
 ## Editing Existing Modules
 1. Open the relevant `ModuleX-Name.md` file.
