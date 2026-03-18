@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 11: Fine‑Tuning Large Language Models with Unsloth | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 11</p>
+            <h1>Module 11: Fine‑Tuning Large Language Models with Unsloth</h1>
+            <p class="hero-copy">1. What is Fine‑Tuning?</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module11-Fine-Tuning-LLMs.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <p><strong>Target audience:</strong> Developers who have built prompts or applications with LLM APIs and now want to adapt a model to a specific domain, style, or dataset without massive compute.</p>
+<hr>
+<h2>1. What is Fine‑Tuning?</h2>
+<p>Fine‑tuning is the process of taking a pre‑trained large language model (LLM) and continuing its training on a <strong>task‑specific</strong> or <strong>domain‑specific</strong> dataset.  Compared to prompt engineering, fine‑tuning:</p>
+<ul>
+<li><strong>Learns</strong> patterns directly from your data, reducing the need for complex prompt tricks.</li>
+<li><strong>Improves</strong> factual accuracy for niche topics (e.g., medical terminology, legal contracts).</li>
+<li><strong>Reduces</strong> token usage and latency because the model internalizes the knowledge.</li>
+</ul>
+<h3>When to fine‑tune</h3>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Why fine‑tune</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Your prompts are getting long and costly</td>
+<td>Embedding domain knowledge reduces prompt length.</td>
+</tr>
+<tr>
+<td>You need consistent style or terminology</td>
+<td>Model learns the style from examples.</td>
+</tr>
+<tr>
+<td>You have a proprietary dataset</td>
+<td>Keeps data private; you control the model.</td>
+</tr>
+<tr>
+<td>You need higher performance on a narrow task</td>
+<td>Specialized training yields better metrics.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>2. Why Unsloth?</h2>
+<p>Unsloth is a lightweight wrapper around 🤗 Transformers that makes fine‑tuning <strong>fast</strong>, <strong>memory‑efficient</strong>, and <strong>GPU‑friendly</strong>:</p>
+<ul>
+<li><strong>8× speed‑up</strong> on a single RTX 3090 compared to vanilla <code>Trainer</code>.</li>
+<li><strong>Low VRAM</strong> usage (as low as 4 GB for Llama‑2‑7B).</li>
+<li>Simple API – a few lines of code to go from dataset to a ready‑to‑serve model.</li>
+<li>Works with <strong>PEFT</strong> (LoRA) adapters, so you never have to store a full model checkpoint.</li>
+</ul>
+<hr>
+<h2>3. Prerequisites</h2>
+<ol>
+<li><strong>Python 3.10+</strong> (the repo already ships a virtual environment).</li>
+<li><strong>GPU</strong> with CUDA 11.8+ (or Apple M‑series with Metal). If you only have CPU, you can still run but it will be slower.</li>
+<li>
+<p>Install the required packages:
+   <code>bash
+   # Activate the workspace venv
+   source /root/.nanobot/workspace/venv/bin/activate
+   pip install unsloth transformers datasets peft</code></p>
+</li>
+<li>
+<p>A <strong>dataset</strong> in CSV/JSONL format with at least two columns: <code>prompt</code> and <code>completion</code>.</p>
+</li>
+</ol>
+<hr>
+<h2>4. Step‑by‑Step Walkthrough</h2>
+<h3>4.1. Prepare the dataset</h3>
+<pre><code class="language-python">import pandas as pd
+
+df = pd.read_csv('my_finetune_data.csv')
+# Ensure columns are named exactly &quot;prompt&quot; and &quot;completion&quot;
+print(df.head())
+</code></pre>
+<p>If you have a JSONL file, you can use <code>datasets.load_dataset('json', data_files='data.jsonl')</code>.</p>
+<h3>4.2. Load a base model with Unsloth</h3>
+<pre><code class="language-python">from unsloth import FastLanguageModel
+
+# Choose a model that fits your GPU memory. Example: Llama‑2‑7B‑Chat
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name = &quot;meta-llama/Llama-2-7b-chat-hf&quot;,
+    max_seq_len = 2048,
+    dtype = &quot;bfloat16&quot;,   # or &quot;float16&quot; for older GPUs
+    load_in_4bit = True,   # 4‑bit quantization saves VRAM
+)
+</code></pre>
+<h3>4.3. Apply LoRA (PEFT) for efficient fine‑tuning</h3>
+<pre><code class="language-python">from unsloth import LoRAConfig, get_peft_model
+
+lora_cfg = LoRAConfig(
+    r = 64,
+    target_modules = [&quot;q_proj&quot;, &quot;v_proj&quot;],
+    lora_alpha = 16,
+    lora_dropout = 0.05,
+    bias = &quot;none&quot;,
+    task_type = &quot;CAUSAL_LM&quot;,
+)
+model = get_peft_model(model, lora_cfg)
+</code></pre>
+<h3>4.4. Tokenize the data</h3>
+<pre><code class="language-python">from transformers import FormattingStyle
+
+# Convert the dataframe to a list of dicts for the trainer
+train_data = [
+    {&quot;messages&quot;: [{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: row.prompt},
+                 {&quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: row.completion}]}
+    for _, row in df.iterrows()
+]
+
+# Unsloth provides a helper to format chat data
+train_dataset = tokenizer.apply_chat_template(
+    train_data,
+    tokenize = True,
+    add_generation_prompt = True,
+    padding = True,
+    truncation = True,
+    max_length = 2048,
+    return_tensors = &quot;pt&quot;,
+)
+</code></pre>
+<h3>4.5. Train!</h3>
+<pre><code class="language-python">from unsloth import FastTrainer
+
+trainer = FastTrainer(
+    model = model,
+    train_dataset = train_dataset,
+    max_seq_len = 2048,
+    batch_size = 4,          # adjust based on VRAM
+    learning_rate = 2e-4,
+    num_train_epochs = 3,
+    optimizer = &quot;adamw_8bit&quot;,
+    warmup_steps = 0.1,
+    weight_decay = 0.01,
+    logging_steps = 10,
+    eval_steps = 0,
+    save_strategy = &quot;no&quot;,
+)
+trainer.train()
+</code></pre>
+<p>When training finishes, the LoRA adapters are saved in <code>./lora_adapter/</code>.</p>
+<hr>
+<h2>5. Deploy the fine‑tuned model</h2>
+<pre><code class="language-python">from unsloth import FastLanguageModel
+
+model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name = &quot;meta-llama/Llama-2-7b-chat-hf&quot;,
+    max_seq_len = 2048,
+    dtype = &quot;bfloat16&quot;,
+    load_in_4bit = True,
+)
+model = model.merge_and_unload()
+model.save_pretrained(&quot;my_finetuned_llama2&quot;)
+</code></pre>
+<p>You can now serve the model with <strong>vLLM</strong>, <strong>FastAPI</strong>, or any HuggingFace inference endpoint.</p>
+<hr>
+<h2>6. Hands‑On Lab (Optional)</h2>
+<ol>
+<li>Clone the repo: <code>git clone https://github.com/unslothai/unsloth.git</code></li>
+<li>Follow the <code>examples/</code> folder for a ready‑to‑run notebook.</li>
+<li>Replace the sample CSV with your own data and run the notebook end‑to‑end.</li>
+</ol>
+<hr>
+<h2>7. Checklist</h2>
+<ul>
+<li>[ ] Install Python 3.10+, activate workspace venv.</li>
+<li>[ ] <code>pip install unsloth transformers datasets peft</code></li>
+<li>[ ] Prepare <code>prompt</code>/<code>completion</code> CSV or JSONL.</li>
+<li>[ ] Choose a base model that fits your GPU.</li>
+<li>[ ] Apply LoRA via Unsloth.</li>
+<li>[ ] Tokenize and train with <code>FastTrainer</code>.</li>
+<li>[ ] Merge adapters and save the model.</li>
+<li>[ ] Deploy with your preferred serving stack.</li>
+</ul>
+<hr>
+<h2>8. Further Reading</h2>
+<ul>
+<li><strong>Unsloth docs:</strong> https://github.com/unslothai/unsloth</li>
+<li><strong>PEFT (LoRA) paper:</strong> https://arxiv.org/abs/2106.09685</li>
+<li><strong>Transformers trainer guide:</strong> https://huggingface.co/docs/transformers/main_classes/trainer</li>
+<li><strong>vLLM serving:</strong> https://github.com/vllm-project/vllm</li>
+</ul>
+<hr>
+<p><em>Happy fine‑tuning! 🎉</em></p>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>
