@@ -184,3 +184,24 @@ By following this comprehensive course you can develop a solid foundation in com
     * Function calling, retrieval‑augmented generation, multi‑model routing
     * FastAPI/Flask integration, Docker containerization, local Ollama deployment
     * Hands‑on labs: chat bot, Gemini switch, OpenRouter comparison, Ollama service
+
+## **Module 11: Fine‑Tuning Large Language Models with Unsloth**
+
+[**Fine‑Tuning LLMs**](./Module11-Fine-Tuning-LLMs.md)
+
+* **Overview:** Adapt pre‑trained LLMs to a specific domain or style using lightweight LoRA adapters and fast training loops.
+* **Key Topics:**
+    * What is fine‑tuning? When to use it.
+    * Why Unsloth? Speed, low VRAM, simple API.
+    * Step‑by‑step walkthrough from dataset preparation to deployment.
+    * Hands‑on lab and checklist.
+
+
+[**AI Application Development**](./Module10-AI-Application-Development.md)
+
+* **Overview:** Build intelligent apps with Python using LLM APIs from OpenAI, Gemini, OpenRouter, and Ollama.
+* **Key Topics:**
+    * API authentication, prompt engineering, streaming responses
+    * Function calling, retrieval‑augmented generation, multi‑model routing
+    * FastAPI/Flask integration, Docker containerization, local Ollama deployment
+    * Hands‑on labs: chat bot, Gemini switch, OpenRouter comparison, Ollama service
