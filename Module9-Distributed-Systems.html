@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distributed Systems | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #0c1440, var(--bg));
+            color: var(--text);
+            min-height: 100vh;
+            line-height: 1.7;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 20% 15%, rgba(246, 162, 39, 0.2), transparent 45%),
+                        radial-gradient(circle at 80% -10%, rgba(126, 220, 226, 0.18), transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        main {
+            width: min(960px, 92vw);
+            margin: 0 auto;
+            padding-bottom: 6rem;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem 0 0;
+            width: min(960px, 92vw);
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        .back-link:hover {
+            color: var(--accent);
+        }
+
+        header.hero {
+            padding: 3rem 0 2rem;
+        }
+
+        .eyebrow {
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.2rem);
+            margin: 0.8rem 0 1rem;
+        }
+
+        .hero p.hero-copy {
+            color: var(--muted);
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            margin-top: 1.6rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .module-shell {
+            background: var(--card);
+            border-radius: 28px;
+            padding: 2.25rem;
+            border: 1px solid var(--outline);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        .module-shell h1 {
+            font-size: 2rem;
+            margin-top: 0;
+        }
+
+        .module-shell h2 {
+            margin-top: 2.5rem;
+        }
+
+        .module-shell h3,
+        .module-shell h4,
+        .module-shell h5 {
+            margin-top: 2rem;
+        }
+
+        .module-shell p,
+        .module-shell li {
+            color: var(--muted);
+        }
+
+        .module-shell ul,
+        .module-shell ol {
+            padding-left: 1.4rem;
+        }
+
+        .module-shell code {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.1rem 0.35rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        pre code {
+            display: block;
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 12px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .status-dot {
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: pulse 2.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 3rem 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .module-shell {
+                padding: 1.5rem;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 9</p>
+            <h1>Distributed Systems</h1>
+            <p class="hero-copy">Overview</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module9-Distributed-Systems.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+
+        <article class="module-shell">
+            <h2>Overview</h2>
+<p>This module introduces the fundamentals of distributed systems, covering concepts such as:</p>
+<ul>
+<li><strong>Scalability</strong> – horizontal vs. vertical scaling</li>
+<li><strong>Reliability</strong> – fault tolerance, replication, consensus algorithms</li>
+<li><strong>Consistency Models</strong> – strong, eventual, CAP theorem</li>
+<li><strong>Communication</strong> – RPC, messaging queues, gRPC, REST</li>
+<li><strong>Coordination Services</strong> – Zookeeper, etcd, Consul</li>
+<li><strong>Microservices Architecture</strong> – service discovery, API gateways</li>
+<li><strong>Distributed Data Stores</strong> – NoSQL, distributed SQL, sharding</li>
+<li><strong>Security</strong> – authentication, encryption, zero‑trust networking</li>
+</ul>
+<h3>Learning Objectives</h3>
+<ol>
+<li>Explain the key challenges in building distributed systems.</li>
+<li>Compare different consistency models and their trade‑offs.</li>
+<li>Design a simple microservice‑based application using Docker and a coordination service.</li>
+<li>Implement a basic client‑server communication pattern using gRPC.</li>
+</ol>
+<h3>Suggested Exercises</h3>
+<ul>
+<li>Set up a two‑node etcd cluster and store a key‑value pair.</li>
+<li>Build a simple chat application using WebSockets across multiple containers.</li>
+<li>Analyze the CAP theorem with real‑world examples (e.g., Cassandra vs. PostgreSQL).</li>
+</ul>
+<hr>
+<p><em>This module is a work‑in‑progress. Contributions are welcome!</em></p>
+        </article>
+    </main>
+
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>

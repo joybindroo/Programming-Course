@@ -151,6 +151,19 @@
 * **Capstone:**
     * Ship a multi-database CRM with shared models, migrations, and DBeaver assets
 
+## **Module 9: Distributed Systems**
+
+[**Distributed Systems**](./Module9-Distributed-Systems.md)
+
+* **Fundamentals of Distributed Computing:**
+    * Concepts of scalability, consistency, and fault tolerance
+* **Key Technologies:**
+    * Consensus algorithms, message queues, and microservice patterns
+* **Practical Labs:**
+    * Building a simple replicated key‑value store and deploying services with Docker Compose
+* **Capstone Project:**
+    * Design and implement a resilient, multi‑node application with health checks and auto‑recovery
+
 **Note:**
 
 * **Language-Agnostic Approach:** While specific programming languages (like Python, Java, C++) will be used to implement concepts, the focus will be on understanding the underlying principles.
