@@ -173,3 +173,14 @@
     * Foster a collaborative learning environment.
 
 By following this comprehensive course you can develop a solid foundation in computer science and programming. You will be able to tackle complex problems and build innovative solutions.
+
+## **Module 10: AI Application Development**
+
+[**AI Application Development**](./Module10-AI-Application-Development.md)
+
+* **Overview:** Build intelligent apps with Python using LLM APIs from OpenAI, Gemini, OpenRouter, and Ollama.
+* **Key Topics:**
+    * API authentication, prompt engineering, streaming responses
+    * Function calling, retrieval‑augmented generation, multi‑model routing
+    * FastAPI/Flask integration, Docker containerization, local Ollama deployment
+    * Hands‑on labs: chat bot, Gemini switch, OpenRouter comparison, Ollama service

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Application Development with Python | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg:#060b1b; --panel:#0f1731; --card:rgba(18,27,56,0.9); --accent:#f6a227; --accent-strong:#f15c2c; --text:#f0f3ff; --muted:#aab5d6; --outline:rgba(255,255,255,0.08); --code-bg:#0c1127; }
+        *{box-sizing:border-box}
+        body{margin:0;font-family:'Space Grotesk','Segoe UI',sans-serif;background:radial-gradient(circle at top,#0c1440,var(--bg));color:var(--text);min-height:100vh;line-height:1.7}
+        body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 15%,rgba(246,162,39,0.2),transparent 45%),radial-gradient(circle at 80% -10%,rgba(126,220,226,0.18),transparent 50%);pointer-events:none;z-index:-1}
+        main{width:min(960px,92vw);margin:0 auto;padding-bottom:6rem}
+        .top-bar{display:flex;align-items:center;justify-content:space-between;padding:1.5rem 0 0;width:min(960px,92vw);margin:0 auto}
+        .back-link{display:inline-flex;align-items:center;gap:0.45rem;color:var(--muted);text-decoration:none;font-size:0.95rem}
+        .back-link:hover{color:var(--accent)}
+        header.hero{padding:3rem 0 2rem}
+        .eyebrow{letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);font-size:0.8rem}
+        h1{font-size:clamp(2.2rem,5vw,3.2rem);margin:0.8rem 0 1rem}
+        .hero p.hero-copy{color:var(--muted);max-width:640px}
+        .hero-actions{margin-top:1.6rem;display:flex;gap:1rem;flex-wrap:wrap}
+        .btn{padding:0.85rem 1.6rem;border-radius:999px;border:1px solid var(--outline);color:var(--text);text-decoration:none;font-weight:600;transition:border-color 150ms ease,color 150ms ease}
+        .btn:hover{border-color:var(--accent);color:var(--accent)}
+        .module-shell{background:var(--card);border-radius:28px;padding:2.25rem;border:1px solid var(--outline);box-shadow:0 35px 60px rgba(0,0,0,0.45)}
+        .module-shell h1{font-size:2rem;margin-top:0}
+        .module-shell h2{margin-top:2.5rem}
+        .module-shell h3,.module-shell h4,.module-shell h5{margin-top:2rem}
+        .module-shell p,.module-shell li{color:var(--muted)}
+        .module-shell ul,.module-shell ol{padding-left:1.4rem}
+        .module-shell code{background:rgba(255,255,255,0.08);padding:0.1rem 0.35rem;border-radius:6px;font-size:0.95rem}
+        pre code{display:block;background:var(--code-bg);padding:1rem;border-radius:12px;overflow-x:auto;line-height:1.5}
+        .status{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.9rem;color:var(--muted)}
+        .status-dot{width:0.55rem;height:0.55rem;border-radius:50%;background:var(--accent);animation:pulse 2.4s ease-in-out infinite}
+        @keyframes pulse{0%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1)}100%{opacity:0.3;transform:scale(0.8)}}
+        footer{text-align:center;color:var(--muted);padding:3rem 0;font-size:0.95rem}
+        @media(max-width:640px){.module-shell{padding:1.5rem}.top-bar{flex-direction:column;align-items:flex-start;gap:0.5rem}}
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 10</p>
+            <h1>AI Application Development with Python</h1>
+            <p class="hero-copy">Overview</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module10-AI-Application-Development.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+        <article class="module-shell">
+            <h2>Overview</h2>
+<p>This module covers how to build intelligent applications in Python using large‑language model (LLM) APIs from providers such as <strong>OpenAI</strong>, <strong>Google Gemini</strong>, <strong>OpenRouter</strong>, and <strong>Ollama</strong>. You will learn to:</p>
+<ul>
+<li>Authenticate and call LLM endpoints securely.</li>
+<li>Prompt‑engineer for reliable, controllable outputs.</li>
+<li>Stream responses and handle token limits.</li>
+<li>Combine multiple models (e.g., retrieval‑augmented generation).</li>
+<li>Deploy locally with Ollama or in the cloud with managed APIs.</li>
+<li>Build simple UI/CLI wrappers and integrate with FastAPI or Flask.</li>
+</ul>
+<h2>Learning Objectives</h2>
+<ol>
+<li>Set up API keys and environment variables for each provider.</li>
+<li>Write reusable Python client wrappers using <code>httpx</code>/<code>requests</code>.</li>
+<li>Implement prompt templates, few‑shot examples, and function calling.</li>
+<li>Stream and batch‑process completions, handling errors and rate limits.</li>
+<li>Build a small end‑to‑end AI app (e.g., a chatbot or code‑assistant).</li>
+<li>Containerize the app with Docker and optionally run locally with Ollama.</li>
+</ol>
+<h2>Suggested Labs</h2>
+<ul>
+<li><strong>Lab 1:</strong> Call OpenAI's <code>chat/completions</code> endpoint to build a simple Q&amp;A bot.</li>
+<li><strong>Lab 2:</strong> Switch the same code to Gemini's <code>generateContent</code> API.</li>
+<li><strong>Lab 3:</strong> Use OpenRouter to route prompts to multiple models and compare costs/latency.</li>
+<li><strong>Lab 4:</strong> Run an Ollama model locally and integrate it with a FastAPI service.</li>
+<li><strong>Lab 5:</strong> Add function calling / tool use (e.g., a weather lookup) with OpenAI.</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li>OpenAI API docs: https://platform.openai.com/docs/api-reference</li>
+<li>Google Gemini API docs: https://ai.google.dev/gemini-api/docs</li>
+<li>OpenRouter API docs: https://openrouter.ai/docs</li>
+<li>Ollama docs: https://ollama.com/docs</li>
+<li>Python libraries: <code>httpx</code>, <code>pydantic</code>, <code>fastapi</code>, <code>python-dotenv</code></li>
+</ul>
+<hr />
+<p><em>This module is a work‑in‑progress. Contributions are welcome!</em></p>
+        </article>
+    </main>
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>
