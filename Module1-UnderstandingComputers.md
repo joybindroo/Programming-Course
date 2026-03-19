@@ -133,7 +133,7 @@ function linearSearch(arr, target) {
 
 ## 7️⃣ Visual Aids (Place‑holder Images)
 > *Insert the following images when you have them ready:* 
-- `cpu_cycle.svg` – visual of the fetch‑decode‑execute cycle.
+- `cpu_cycle.png` – visual of the fetch‑decode‑execute cycle.
 - `binary_chart.png` – binary to decimal conversion table.
 - `history_timeline.png` – timeline of major computing milestones.
 
