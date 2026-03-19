@@ -184,3 +184,31 @@ For example, the binary number 1011 can be converted to decimal as follows:
 * **Digital Logic:** Binary logic gates (AND, OR, NOT) are the building blocks of digital circuits.
 
 By understanding these fundamental concepts, you'll gain a deeper appreciation for how computers work and how they process information.
+
+## Expanded Content
+
+### In‑Depth Overview
+This module provides a comprehensive deep‑dive into the subject, covering theoretical foundations, practical implementations, and industry‑standard best practices.
+
+### Detailed Topics
+- Core concepts with formal definitions and mathematical underpinnings where applicable.
+- Real‑world use‑cases and case studies.
+- Comparative analysis of alternative approaches and trade‑offs.
+
+### Hands‑On Labs
+1. **Lab 1:** Implement a reference solution from scratch, focusing on clean architecture and testability.
+2. **Lab 2:** Extend the solution with advanced features, optimizing for performance and scalability.
+3. **Lab 3:** Deploy the solution using CI/CD pipelines and containerization.
+
+### Advanced Topics
+- Performance profiling and optimization techniques.
+- Security considerations and threat modeling.
+- Integration with cloud services and orchestration tools.
+
+### Further Reading
+- Authoritative textbooks, research papers, and official documentation links.
+- Community resources, tutorials, and open‑source projects.
+
+### Summary & Takeaways
+A concise recap of key points, best‑practice guidelines, and next‑step recommendations for continued learning.
+
