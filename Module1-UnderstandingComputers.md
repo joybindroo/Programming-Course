@@ -131,12 +131,13 @@ function linearSearch(arr, target) {
 
 ---
 
-## 7️⃣ Visual Aids (Place‑holder Images)
-> *Insert the following images when you have them ready:* 
-- `cpu_cycle.png` – visual of the fetch‑decode‑execute cycle.
-- `binary_chart.png` – binary to decimal conversion table.
-- `history_timeline.png` – timeline of major computing milestones.
+## 7️⃣ Visual Aids
 
+![CPU Cycle](images/cpu_cycle.png "Fetch‑Decode‑Execute Cycle")
+
+![Binary Chart](images/binary_chart.png "Binary to Decimal Conversion Table")
+
+![History Timeline](images/history_timeline.png "Computing Milestones Timeline")
 ---
 
 ## 8️⃣ Glossary (Quick Reference)
