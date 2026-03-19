@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Module 1: Foundations of Computer Science | Programming Course</title>
+    <title>Module 1 – Foundations of Computer Science | Programming Course</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -214,8 +214,8 @@
     <main>
         <header class="hero">
             <p class="eyebrow">Module 1</p>
-            <h1>Module 1: Foundations of Computer Science</h1>
-            <p class="hero-copy">Understanding Computers: How Computers Work</p>
+            <h1>Module 1 – Foundations of Computer Science</h1>
+            <p class="hero-copy">1️⃣ Understanding How Computers Work</p>
             <div class="hero-actions">
                 <a class="btn" href="Module1-UnderstandingComputers.md" download>Download Markdown</a>
                 <a class="btn" href="README.md">Full Course Index</a>
@@ -223,327 +223,349 @@
         </header>
 
         <article class="module-shell">
-            <h2>Understanding Computers: How Computers Work</h2>
-<h3>How Computers Work: A Basic Overview</h3>
-<p>A computer is a sophisticated electronic machine that follows a set of instructions to perform tasks.</p>
-<p><strong>Types of Computers:</strong></p>
-<ul>
-<li><strong>Desktop Computer:</strong> A personal computing device designed to fit on top of a typical office desk</li>
-<li><strong>Laptop:</strong> A compact and portable personal computer designed for mobile use</li>
-<li><strong>Mobile Devices:</strong> Smartphones and tablets with computing capabilities</li>
-</ul>
-<h3>Hardware Components</h3>
-<p><strong>Core Hardware Components:</strong></p>
+            <hr>
+<h2>1️⃣ Understanding How Computers Work</h2>
+<h3>1.1 What Is a Computer?</h3>
+<p>A <strong>computer</strong> is an electronic device that follows a set of instructions (programs) to manipulate data. It consists of <strong>hardware</strong> (physical components) and <strong>software</strong> (programs that tell the hardware what to do).</p>
+<h3>1.2 Core Hardware Components</h3>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Role</th>
+<th>Typical Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU</strong> (Central Processing Unit)</td>
+<td>Executes instructions, performs arithmetic &amp; logic</td>
+<td>Intel i7, AMD Ryzen, ARM Cortex‑A78</td>
+</tr>
+<tr>
+<td><strong>Memory</strong></td>
+<td>Temporary storage for data the CPU is actively using</td>
+<td>RAM (DDR4/5), ROM (BIOS)</td>
+</tr>
+<tr>
+<td><strong>Storage</strong></td>
+<td>Persistent data storage</td>
+<td>HDD, SSD, NVMe</td>
+</tr>
+<tr>
+<td><strong>Input Devices</strong></td>
+<td>Bring data into the computer</td>
+<td>Keyboard, mouse, microphone, scanner</td>
+</tr>
+<tr>
+<td><strong>Output Devices</strong></td>
+<td>Present results to the user</td>
+<td>Monitor, printer, speakers</td>
+</tr>
+</tbody>
+</table>
+<h3>1.3 The Fetch‑Decode‑Execute Cycle</h3>
 <ol>
-<li>
-<p><strong>Central Processing Unit (CPU):</strong> Often referred to as the "brain" of the computer, the CPU is responsible for executing instructions and performing calculations. It orchestrates the various components to work together.</p>
-</li>
-<li>
-<p><strong>Memory:</strong> This is where the computer stores data and instructions temporarily.</p>
-<ul>
-<li><strong>RAM (Random Access Memory):</strong> Short-term memory used to store information that the CPU is actively working on</li>
-<li><strong>ROM (Read-Only Memory):</strong> Long-term memory that stores essential system instructions</li>
-</ul>
-</li>
-<li>
-<p><strong>Storage Devices:</strong> These devices store data persistently.</p>
-<ul>
-<li><strong>Hard Disk Drive (HDD):</strong> Mechanical device that stores data on magnetic disks</li>
-<li><strong>Solid-State Drive (SSD):</strong> Faster storage device using flash memory</li>
-</ul>
-</li>
-<li>
-<p><strong>Input Devices:</strong> Devices that allow you to input data into the computer.</p>
-<ul>
-<li>Keyboard, mouse, scanner, microphone</li>
-</ul>
-</li>
-<li>
-<p><strong>Output Devices:</strong> Devices that display or output data from the computer.</p>
-<ul>
-<li>Monitor, printer, speakers</li>
-</ul>
-</li>
+<li><strong>Fetch</strong> – CPU reads the next instruction from memory.</li>
+<li><strong>Decode</strong> – The instruction is translated into signals the ALU can understand.</li>
+<li><strong>Execute</strong> – The ALU performs the operation (e.g., add, compare).</li>
+<li><strong>Store</strong> – Result is written back to memory or a register.</li>
 </ol>
-<h3>Software Components</h3>
-<p><strong>System Software:</strong> Manages the computer's hardware and resources.</p>
+<blockquote>
+<p>This cycle repeats millions of times per second, enabling all modern software.</p>
+</blockquote>
+<hr>
+<h2>2️⃣ A Brief History of Computing</h2>
+<table>
+<thead>
+<tr>
+<th>Era</th>
+<th>Milestones</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mechanical</strong></td>
+<td>Abacus, Slide Rule, Babbage’s Analytical Engine</td>
+<td>First attempts at automated calculation</td>
+</tr>
+<tr>
+<td><strong>Early Electronic</strong></td>
+<td>ENIAC, Vacuum‑tube computers</td>
+<td>Introduced electronic speed, but were huge and unreliable</td>
+</tr>
+<tr>
+<td><strong>Transistor &amp; IC</strong></td>
+<td>Mainframes → Minicomputers → Microprocessors</td>
+<td>Shrunk size, lowered cost, increased reliability</td>
+</tr>
+<tr>
+<td><strong>Personal Computing</strong></td>
+<td>Apple II, IBM PC, GUI era</td>
+<td>Brought computers to homes and offices</td>
+</tr>
+<tr>
+<td><strong>Internet &amp; Mobile</strong></td>
+<td>World Wide Web, smartphones, cloud</td>
+<td>Shifted focus to connectivity and services</td>
+</tr>
+<tr>
+<td><strong>Modern Era</strong></td>
+<td>Multi‑core CPUs, AI accelerators, edge devices</td>
+<td>Emphasis on parallelism, energy efficiency, AI workloads</td>
+</tr>
+</tbody>
+</table>
+<p>Key concepts that emerged:</p>
 <ul>
-<li><strong>Operating Systems (OS):</strong> Like Windows, macOS, and Linux, they provide a user interface and manage hardware resources</li>
+<li><strong>Moore’s Law</strong> – transistor count doubles roughly every two years.</li>
+<li><strong>Von Neumann Architecture</strong> – CPU, memory, I/O unified in a single design.</li>
+<li><strong>Turing Machine</strong> – theoretical foundation for what can be computed.</li>
 </ul>
-<p><strong>Application Software:</strong> Programs designed to perform specific tasks.</p>
+<hr>
+<h2>3️⃣ Binary – The Language of Machines</h2>
+<h3>3.1 Why Binary?</h3>
 <ul>
-<li>Word processors, spreadsheets, web browsers, games</li>
+<li><strong>Simplicity:</strong> Electronic circuits easily represent two states – <strong>0 (off)</strong> and <strong>1 (on)</strong>.</li>
+<li><strong>Reliability:</strong> Binary signals are less prone to noise than analog levels.</li>
+<li><strong>Efficiency:</strong> Binary arithmetic maps directly to hardware logic gates.</li>
 </ul>
-<h3>The Computer's Basic Cycle</h3>
-<p>The computer follows a simple cycle to execute instructions:</p>
-<ol>
-<li><strong>Fetch:</strong> The CPU fetches an instruction from memory</li>
-<li><strong>Decode:</strong> The CPU decodes the instruction to understand what it needs to do</li>
-<li><strong>Execute:</strong> The CPU executes the instruction</li>
-<li><strong>Store:</strong> The result of the execution is stored in memory</li>
-</ol>
-<p>This cycle repeats continuously, allowing the computer to perform a wide range of tasks.</p>
-<h3>The Evolution of Computing</h3>
-<h4>Early Computing Machines: Mechanical Devices</h4>
-<p>Before electronic computers, mechanical devices performed calculations:</p>
-<ul>
-<li><strong>Abacus:</strong> Ancient counting tool using beads to represent numbers</li>
-<li><strong>Slide Rule:</strong> Mechanical analog computer for multiplication and division</li>
-<li><strong>Charles Babbage's Analytical Engine:</strong> Conceptual design for a mechanical general-purpose computer</li>
-</ul>
-<h4>The Digital Revolution</h4>
-<p>Key developments in modern computing:</p>
-<ul>
-<li><strong>Turing Machine:</strong> Theoretical device proposed by Alan Turing, laying foundation for computer science</li>
-<li><strong>Von Neumann Architecture:</strong> Fundamental design for digital computers with CPU, memory, input, and output components</li>
-</ul>
-<h4>Electronic Computers</h4>
-<ul>
-<li><strong>ENIAC:</strong> One of the earliest electronic general-purpose computers using vacuum tubes</li>
-<li><strong>Transistor-Based Computers:</strong> Smaller, more reliable, and energy-efficient computers</li>
-<li><strong>Integrated Circuits:</strong> Led to modern microprocessors and computers</li>
-</ul>
-<h4>Moore's Law</h4>
-<p>Observation that the number of transistors in a dense integrated circuit doubles approximately every two years, driving exponential growth in computing power.</p>
-<h2>Binary Number System and Its Significance</h2>
-<h3>Understanding Binary</h3>
-<p>Computers understand and process information in binary code, a number system using only two digits: 0 and 1. Each digit is called a bit.</p>
-<h3>Why Binary?</h3>
-<ul>
-<li><strong>Simplicity:</strong> Electronic circuits can easily represent two states: on (1) and off (0)</li>
-<li><strong>Reliability:</strong> Binary signals are less prone to errors compared to analog signals</li>
-<li><strong>Efficiency:</strong> Binary arithmetic is straightforward and efficient in hardware</li>
-</ul>
-<h3>Binary to Decimal Conversion</h3>
-<p>To convert a binary number to decimal, multiply each digit by its corresponding power of 2 and add the results.</p>
-<p>Example: Binary 1011 to Decimal:</p>
-<pre><code>1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 1 * 2^0 = 8 + 0 + 2 + 1 = 11
+<h3>3.2 Converting Binary → Decimal</h3>
+<pre><code>Binary 1011 = 1·2³ + 0·2² + 1·2¹ + 1·2⁰ = 8 + 0 + 2 + 1 = 11
 </code></pre>
-<h3>Significance of Binary</h3>
+<blockquote>
+<p><strong>Exercise:</strong> Convert 11010, 11100, and 100001 to decimal.</p>
+</blockquote>
+<h3>3.3 Binary in Real‑World Data</h3>
 <ul>
-<li><strong>Data Representation:</strong> All data (text, images, sound) is stored and processed in binary</li>
-<li><strong>Machine Code:</strong> Computer instructions are in binary code</li>
-<li><strong>Digital Logic:</strong> Binary logic gates (AND, OR, NOT) are building blocks of digital circuits</li>
+<li><strong>Text:</strong> ASCII/UTF‑8 encodes characters as binary bytes.</li>
+<li><strong>Images:</strong> Pixels stored as binary RGB values.</li>
+<li><strong>Audio/Video:</strong> Samples represented in binary form.</li>
+<li><strong>Machine Code:</strong> CPU instructions are binary patterns.</li>
 </ul>
-<h2>Introduction to Algorithms</h2>
-<h3>Defining Algorithms</h3>
-<p>An algorithm is a finite sequence of well-defined instructions to solve a specific problem or accomplish a specific task. Algorithms are the heart of computer programming.</p>
-<p><strong>Characteristics of Good Algorithms:</strong></p>
+<hr>
+<h2>4️⃣ Algorithms – Step‑by‑Step Problem Solving</h2>
+<h3>4.1 What Is an Algorithm?</h3>
+<p>A <strong>finite, well‑defined sequence of steps</strong> that transforms input into output.</p>
+<p><strong>Good algorithm traits:</strong></p>
 <ul>
-<li><strong>Finite:</strong> Must terminate after a finite number of steps</li>
-<li><strong>Well-defined:</strong> Each step must be precisely defined</li>
-<li><strong>Input:</strong> Zero or more inputs</li>
-<li><strong>Output:</strong> One or more outputs</li>
-<li><strong>Effective:</strong> Each step must be basic enough to be carried out</li>
+<li><strong>Finite:</strong> Terminates after a limited number of steps.</li>
+<li><strong>Unambiguous:</strong> Each step is clear.</li>
+<li><strong>Effective:</strong> Operations are simple enough for a computer.</li>
 </ul>
-<h3>Problem-Solving Techniques</h3>
-<h4>Breaking Down Problems</h4>
-<p><strong>Decomposition:</strong> Breaking complex problems into smaller, manageable sub-problems.</p>
-<p>Example: Sorting a list of numbers</p>
-<ol>
-<li>Compare adjacent elements</li>
-<li>Swap if they're in wrong order</li>
-<li>Repeat until list is sorted</li>
-</ol>
-<h4>Algorithm Design Strategies</h4>
-<ol>
-<li><strong>Brute Force:</strong> Try all possible solutions until the correct one is found</li>
-<li><strong>Divide and Conquer:</strong> Break problem into smaller sub-problems, solve them independently</li>
-<li><strong>Greedy Approach:</strong> Make the locally optimal choice at each step</li>
-<li><strong>Dynamic Programming:</strong> Break problem into overlapping sub-problems and store results</li>
-</ol>
-<h3>Example: Finding the Maximum Number</h3>
-<p><strong>Problem:</strong> Find the largest number in a list</p>
-<p><strong>Algorithm:</strong></p>
-<ol>
-<li>Assume the first number is the maximum</li>
-<li>Go through each remaining number in the list</li>
-<li>If a number is greater than the current maximum, update the maximum</li>
-<li>After checking all numbers, return the maximum</li>
-</ol>
-<pre><code class="language-python">def find_maximum(numbers):
-    max_number = numbers[0]
-    for num in numbers[1:]:
-        if num &gt; max_number:
-            max_number = num
-    return max_number
+<h3>4.2 Design Strategies</h3>
+<table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th>When to Use</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Brute Force</strong></td>
+<td>Small input space, easy to implement</td>
+<td>Linear search</td>
+</tr>
+<tr>
+<td><strong>Divide &amp; Conquer</strong></td>
+<td>Problems that can be split recursively</td>
+<td>Merge sort</td>
+</tr>
+<tr>
+<td><strong>Greedy</strong></td>
+<td>Local optimum leads to global optimum</td>
+<td>Dijkstra’s shortest path</td>
+</tr>
+<tr>
+<td><strong>Dynamic Programming</strong></td>
+<td>Overlapping sub‑problems, optimal substructure</td>
+<td>Fibonacci memoization</td>
+</tr>
+</tbody>
+</table>
+<h3>4.3 Mini‑Lab: Linear Search (Python &amp; JavaScript)</h3>
+<pre><code class="language-python"># linear_search.py
+def linear_search(arr, target):
+    for i, val in enumerate(arr):
+        if val == target:
+            return i
+    return -1
 </code></pre>
-<h2>Flowcharts and Pseudocode</h2>
-<h3>Flowcharts</h3>
-<p>Flowcharts are visual diagrams that represent algorithms using standardized symbols:</p>
-<p><strong>Common Flowchart Symbols:</strong></p>
-<ul>
-<li><strong>Oval:</strong> Start/End</li>
-<li><strong>Rectangle:</strong> Process/Operation</li>
-<li><strong>Diamond:</strong> Decision</li>
-<li><strong>Parallelogram:</strong> Input/Output</li>
-<li><strong>Arrow:</strong> Flow direction</li>
-</ul>
-<h3>Pseudocode</h3>
-<p>Pseudocode is a simplified, informal programming language used to describe algorithms:</p>
-<p><strong>Example: Finding the Average of Numbers</strong></p>
-<pre><code>START
-    INPUT &quot;How many numbers?&quot; as count
-    SET sum = 0
-
-    FOR i FROM 1 TO count:
-        INPUT &quot;Enter number &quot; + i as number
-        sum = sum + number
-    END FOR
-
-    average = sum / count
-    PRINT &quot;The average is: &quot; + average
-END
+<pre><code class="language-javascript">// linearSearch.js
+function linearSearch(arr, target) {
+    for (let i = 0; i &lt; arr.length; i++) {
+        if (arr[i] === target) return i;
+    }
+    return -1;
+}
 </code></pre>
-<h3>Converting Algorithm to Code</h3>
-<p><strong>Problem:</strong> Check if a number is positive, negative, or zero</p>
-<p><strong>Algorithm Steps:</strong></p>
+<p><em>Run both on an array of 10 000 random numbers and note the linear growth of runtime.</em></p>
+<hr>
+<h2>5️⃣ Big‑O Notation – A Light Introduction</h2>
+<table>
+<thead>
+<tr>
+<th>Complexity</th>
+<th>Description</th>
+<th>Typical Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>O(1)</strong></td>
+<td>Constant time – independent of input size</td>
+<td>Accessing an array element by index</td>
+</tr>
+<tr>
+<td><strong>O(log n)</strong></td>
+<td>Logarithmic – halves the problem each step</td>
+<td>Binary search</td>
+</tr>
+<tr>
+<td><strong>O(n)</strong></td>
+<td>Linear – scans every element once</td>
+<td>Linear search</td>
+</tr>
+<tr>
+<td><strong>O(n log n)</strong></td>
+<td>Linearithmic – divide &amp; conquer sorts</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>O(n²)</strong></td>
+<td>Quadratic – nested loops</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>O(2ⁿ)</strong></td>
+<td>Exponential – brute‑force combinatorial</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Why it matters:</strong> Guides the choice of data structures and algorithms early on.</p>
+</blockquote>
+<hr>
+<h2>6️⃣ Coding Style &amp; Debugging Basics</h2>
+<table>
+<thead>
+<tr>
+<th>Language</th>
+<th>Style Guide</th>
+<th>Quick Debug Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Python</strong></td>
+<td>PEP‑8 (<code>flake8</code>, <code>black</code>)</td>
+<td><code>print()</code> or <code>pdb.set_trace()</code></td>
+</tr>
+<tr>
+<td><strong>JavaScript</strong></td>
+<td>ESLint (Airbnb)</td>
+<td><code>console.log()</code> or Chrome DevTools</td>
+</tr>
+<tr>
+<td><strong>C/C++</strong></td>
+<td>Google C++ Style</td>
+<td><code>printf()</code> or <code>gdb</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Tips:</strong></p>
 <ol>
-<li>Get input number</li>
-<li>If number &gt; 0, display "Positive"</li>
-<li>Else if number &lt; 0, display "Negative"</li>
-<li>Else, display "Zero"</li>
+<li>Keep functions short (≤ 30 lines). </li>
+<li>Name variables descriptively. </li>
+<li>Write a tiny unit test after each function (<code>assert</code> in Python, <code>jest</code> in JS). </li>
+<li>Use a debugger to step through complex logic.</li>
 </ol>
-<p><strong>Implementation:</strong></p>
-<pre><code class="language-python">def check_number(number):
-    if number &gt; 0:
-        return &quot;Positive&quot;
-    elif number &lt; 0:
-        return &quot;Negative&quot;
-    else:
-        return &quot;Zero&quot;
-</code></pre>
-<h2>Data Structures: Basic Concepts</h2>
-<h3>What are Data Structures?</h3>
-<p>Data structures are ways of organizing and storing data so that it can be accessed and modified efficiently. They are the building blocks for creating efficient algorithms.</p>
-<h3>Basic Data Structures</h3>
-<h4>Arrays</h4>
-<p>An array is a collection of elements of the same data type stored in contiguous memory locations.</p>
-<p><strong>Characteristics:</strong></p>
+<hr>
+<h2>7️⃣ Visual Aids (Place‑holder Images)</h2>
+<blockquote>
+<p><em>Insert the following images when you have them ready:</em> </p>
+</blockquote>
 <ul>
-<li>Fixed size (in most languages)</li>
-<li>Elements accessed by index</li>
-<li>Fast random access</li>
-<li>Insertion/deletion can be expensive</li>
+<li><code>cpu_cycle.svg</code> – visual of the fetch‑decode‑execute cycle.</li>
+<li><code>binary_chart.png</code> – binary to decimal conversion table.</li>
+<li><code>history_timeline.png</code> – timeline of major computing milestones.</li>
 </ul>
-<p><strong>Example:</strong></p>
-<pre><code class="language-python"># Array of integers
-numbers = [5, 10, 15, 20, 25]
-print(numbers[2])  # Output: 15
-</code></pre>
-<h4>Lists</h4>
-<p>Lists are ordered collections that can grow and shrink dynamically.</p>
-<p><strong>Characteristics:</strong></p>
-<ul>
-<li>Dynamic size</li>
-<li>Elements maintain insertion order</li>
-<li>Can contain different data types</li>
-<li>Flexible insertion and deletion</li>
-</ul>
-<p><strong>Example:</strong></p>
-<pre><code class="language-python"># List of mixed types
-my_list = [1, &quot;hello&quot;, 3.14, True]
-my_list.append(&quot;new item&quot;)  # Add to end
-my_list.insert(0, &quot;first&quot;)  # Insert at position
-</code></pre>
-<h4>Stacks</h4>
-<p>A stack is a Last-In-First-Out (LIFO) data structure.</p>
-<p><strong>Operations:</strong></p>
-<ul>
-<li><strong>Push:</strong> Add element to top</li>
-<li><strong>Pop:</strong> Remove element from top</li>
-<li><strong>Peek:</strong> View top element without removing</li>
-</ul>
-<p><strong>Example:</strong></p>
-<pre><code class="language-python">stack = []
-stack.append(1)  # Push 1
-stack.append(2)  # Push 2
-stack.append(3)  # Push 3
-
-top = stack.pop()  # Pop 3 (LIFO)
-</code></pre>
-<h4>Queues</h4>
-<p>A queue is a First-In-First-Out (FIFO) data structure.</p>
-<p><strong>Operations:</strong></p>
-<ul>
-<li><strong>Enqueue:</strong> Add element to rear</li>
-<li><strong>Dequeue:</strong> Remove element from front</li>
-<li><strong>Front:</strong> View front element</li>
-</ul>
-<p><strong>Example:</strong></p>
-<pre><code class="language-python">from collections import queue
-
-q = queue.Queue()
-q.put(1)  # Enqueue 1
-q.put(2)  # Enqueue 2
-
-front = q.get()  # Dequeue 1 (FIFO)
-</code></pre>
-<h3>Understanding Data Relationships</h3>
-<p><strong>Linear Data Structures:</strong></p>
-<ul>
-<li>Elements are arranged in sequential order</li>
-<li>One-to-one relationships between elements</li>
-<li>Examples: Arrays, Lists, Stacks, Queues</li>
-</ul>
-<p><strong>Non-linear Data Structures:</strong></p>
-<ul>
-<li>Elements can have multiple relationships</li>
-<li>Not arranged in sequential order</li>
-<li>Examples: Trees, Graphs (covered in later modules)</li>
-</ul>
-<h3>Applications of Data Structures</h3>
-<p><strong>Arrays:</strong></p>
-<ul>
-<li>Storing collections of similar items</li>
-<li>Implementing other data structures</li>
-<li>Mathematical computations</li>
-</ul>
-<p><strong>Lists:</strong></p>
-<ul>
-<li>Dynamic collections where size changes</li>
-<li>When insertion/deletion is frequent</li>
-</ul>
-<p><strong>Stacks:</strong></p>
-<ul>
-<li>Function call management</li>
-<li>Undo operations in editors</li>
-<li>Expression evaluation</li>
-</ul>
-<p><strong>Queues:</strong></p>
-<ul>
-<li>Task scheduling</li>
-<li>Print job management</li>
-<li>Breadth-first search algorithms</li>
-</ul>
-<h2>Practice Exercises</h2>
-<h3>Computer Basics</h3>
+<hr>
+<h2>8️⃣ Glossary (Quick Reference)</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>CPU</strong></td>
+<td>Central Processing Unit – the “brain” of the computer.</td>
+</tr>
+<tr>
+<td><strong>RAM</strong></td>
+<td>Random‑Access Memory – volatile storage for active data.</td>
+</tr>
+<tr>
+<td><strong>ROM</strong></td>
+<td>Read‑Only Memory – non‑volatile firmware.</td>
+</tr>
+<tr>
+<td><strong>Algorithm</strong></td>
+<td>Step‑by‑step procedure to solve a problem.</td>
+</tr>
+<tr>
+<td><strong>Big‑O</strong></td>
+<td>Notation describing how runtime or space grows with input size.</td>
+</tr>
+<tr>
+<td><strong>Binary</strong></td>
+<td>Base‑2 number system using only 0 and 1.</td>
+</tr>
+<tr>
+<td><strong>Fetch‑Decode‑Execute</strong></td>
+<td>Core CPU cycle that processes instructions.</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>9️⃣ Practice Exercises</h2>
+<h3>9.1 Computer Basics</h3>
 <ol>
-<li>Draw a diagram showing the relationship between CPU, RAM, and storage</li>
-<li>Convert the following binary numbers to decimal: 1010, 1111, 10000</li>
-<li>Explain why computers use binary instead of decimal</li>
+<li>Draw a diagram showing the relationship between <strong>CPU</strong>, <strong>RAM</strong>, and <strong>Storage</strong>.</li>
+<li>Convert the binary numbers <strong>1010</strong>, <strong>1111</strong>, <strong>10000</strong> to decimal.</li>
+<li>Explain why computers use <strong>binary</strong> instead of decimal.</li>
 </ol>
-<h3>Algorithms</h3>
+<h3>9.2 Algorithms</h3>
 <ol>
-<li>Write an algorithm to find the sum of all even numbers in a list</li>
-<li>Create a flowchart for a simple login process</li>
-<li>Write pseudocode for a calculator that performs basic operations</li>
+<li>Write an algorithm (pseudocode) to compute the <strong>sum of all even numbers</strong> in a list.</li>
+<li>Create a <strong>flowchart</strong> for a simple <strong>login</strong> process.</li>
+<li>Implement a <strong>linear search</strong> in both Python and JavaScript (see Lab above).</li>
 </ol>
-<h3>Data Structures</h3>
+<h3>9.3 Data Structures</h3>
 <ol>
-<li>Implement a stack using a list</li>
-<li>Create a function that reverses a queue</li>
-<li>Compare the performance of arrays and lists for different operations</li>
+<li>Implement a <strong>stack</strong> using a Python list.</li>
+<li>Write a function that <strong>reverses a queue</strong>.</li>
+<li>Compare the performance of <strong>arrays vs. lists</strong> for insertion at the front.</li>
 </ol>
-<h2>Key Takeaways</h2>
+<hr>
+<h2>🔑 Key Takeaways</h2>
 <ul>
-<li>Computers consist of hardware (physical components) and software (programs)</li>
-<li>Binary is fundamental to how computers store and process information</li>
-<li>Algorithms are step-by-step procedures for solving problems</li>
-<li>Flowcharts and pseudocode help visualize and plan algorithms</li>
-<li>Data structures organize data for efficient access and modification</li>
-<li>Understanding these fundamentals is essential before learning programming languages</li>
+<li>A computer is a combination of <strong>hardware</strong> and <strong>software</strong> that follows the <strong>fetch‑decode‑execute</strong> cycle.</li>
+<li><strong>Binary</strong> is the fundamental language of machines; everything (text, images, sound) is ultimately binary.</li>
+<li><strong>Algorithms</strong> are precise step‑by‑step instructions; choosing the right design strategy matters.</li>
+<li><strong>Big‑O</strong> helps you reason about efficiency before you write code.</li>
+<li>Good <strong>coding style</strong> and <strong>debugging habits</strong> save time and reduce bugs.</li>
+<li>Understanding the <strong>history</strong> gives context for why modern computers look the way they do.</li>
 </ul>
+<hr>
+<p><em>End of Module 1</em></p>
         </article>
     </main>
 
