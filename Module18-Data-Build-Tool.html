@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 18 – Data Build Tool (dbt) | Programming Course</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060b1b;
+            --panel: #0f1731;
+            --card: rgba(18, 27, 56, 0.9);
+            --accent: #f6a227;
+            --accent-strong: #f15c2c;
+            --text: #f0f3ff;
+            --muted: #aab5d6;
+            --outline: rgba(255, 255, 255, 0.08);
+            --code-bg: #0c1127;
+        }
+        * { box-sizing: border-box; }
+        body { margin:0; font-family:'Space Grotesk','Segoe UI',sans-serif; background:radial-gradient(circle at top, #0c1440, var(--bg)); color:var(--text); min-height:100vh; }
+        body::before { content:""; position:fixed; inset:0; background:radial-gradient(circle at 20% 15%, rgba(246,162,39,0.2), transparent 45%), radial-gradient(circle at 80% -10%, rgba(126,220,226,0.18), transparent 50%); pointer-events:none; z-index:-1; }
+        .top-bar { display:flex; align-items:center; justify-content:space-between; padding:1.5rem 0 0; width:min(960px,92vw); margin:0 auto; }
+        .back-link { display:inline-flex; align-items:center; gap:0.45rem; color:var(--muted); text-decoration:none; font-size:0.95rem; }
+        .back-link:hover { color:var(--accent); }
+        header.hero { padding:3rem 0 2rem; }
+        .eyebrow { letter-spacing:0.3em; text-transform:uppercase; color:var(--accent); font-size:0.8rem; }
+        h1 { font-size:clamp(2.2rem,5vw,3.2rem); margin:0.8rem 0 1rem; }
+        .hero p.hero-copy { color:var(--muted); max-width:640px; }
+        .hero-actions { margin-top:1.6rem; display:flex; gap:1rem; flex-wrap:wrap; }
+        .btn { padding:0.85rem 1.6rem; border-radius:999px; border:1px solid var(--outline); color:var(--text); text-decoration:none; font-weight:600; transition:border-color 150ms ease, color 150ms ease; }
+        .btn:hover { border-color:var(--accent); color:var(--accent); }
+        .module-shell { background:var(--card); border-radius:28px; padding:2.25rem; border:1px solid var(--outline); box-shadow:0 35px 60px rgba(0,0,0,0.45); }
+        .module-shell h2 { margin-top:2.5rem; }
+        .module-shell code { background:rgba(255,255,255,0.08); padding:0.1rem 0.35rem; border-radius:6px; font-size:0.95rem; }
+        pre code { display:block; background:var(--code-bg); padding:1rem; border-radius:12px; overflow-x:auto; line-height:1.5; }
+        footer { text-align:center; color:var(--muted); padding:3rem 0; font-size:0.95rem; }
+        @media (max-width:640px) { .module-shell { padding:1.5rem; } .top-bar { flex-direction:column; align-items:flex-start; gap:0.5rem; } }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a class="back-link" href="index.html">⬅ Back to overview</a>
+        <span class="status"><span class="status-dot"></span>Live module notes</span>
+    </div>
+    <main>
+        <header class="hero">
+            <p class="eyebrow">Module 18</p>
+            <h1>Module 18 – Data Build Tool (dbt)</h1>
+            <p class="hero-copy">Learning Objectives</p>
+            <div class="hero-actions">
+                <a class="btn" href="Module18-Data-Build-Tool.md" download>Download Markdown</a>
+                <a class="btn" href="README.md">Full Course Index</a>
+            </div>
+        </header>
+        <article class="module-shell">
+            <hr>
+<h2>Learning Objectives</h2>
+<ul>
+<li>Understand dbt’s role in modern ELT pipelines.</li>
+<li>Install and configure dbt‑core (and optionally dbt Cloud).</li>
+<li>Build a dbt project: models, seeds, snapshots, tests, docs.</li>
+<li>Write reusable SQL with Jinja macros and ref() dependencies.</li>
+<li>Run, debug, and profile dbt models locally and in CI/CD.</li>
+<li>Advanced patterns: incremental models, exposures, packages, and dbt Cloud jobs.</li>
+</ul>
+<h2>Overview</h2>
+<p>dbt (Data Build Tool) is a <strong>SQL‑first</strong> transformation framework that lets analysts and engineers version‑control, test, and document data models. It sits in the ELT layer, turning raw data in a warehouse into curated, analytics‑ready tables.</p>
+<h2>Key Concepts</h2>
+<ol>
+<li><strong>Models</strong> – .sql files compiled into SELECT statements.</li>
+<li><strong>Sources</strong> – definitions of raw tables/views.</li>
+<li><strong>Seeds</strong> – CSV files loaded as tables.</li>
+<li><strong>Snapshots</strong> – point‑in‑time versioning of slowly changing dimensions.</li>
+<li><strong>Tests</strong> – data quality assertions (unique, not_null, relationships, custom).</li>
+<li><strong>Docs</strong> – auto‑generated documentation site.</li>
+<li><strong>Macros</strong> – reusable Jinja‑templated SQL snippets.</li>
+</ol>
+<h2>Installation</h2>
+<h3>dbt‑core (Python)</h3>
+<pre><code>python -m venv .venv
+source .venv/bin/activate
+pip install "dbt-postgres==1.8.*"  # replace with your warehouse adapter
+</code></pre>
+<h3>dbt Cloud (SaaS)</h3>
+<p>Sign up at <a href="https://cloud.getdbt.com/">dbt Cloud</a>, connect your warehouse, and import a Git repo.</p>
+<h2>Project Structure</h2>
+<pre><code>my_dbt_project/
+├─ dbt_project.yml          # project config
+├─ profiles.yml             # connection profiles (usually ~/.dbt/)
+├─ models/                  # SQL models
+│   ├─ staging/            # raw‑to‑staging transformations
+│   └─ marts/              # business‑logic models
+├─ seeds/                   # CSV files loaded as tables
+├─ snapshots/               # snapshot definitions
+├─ macros/                  # Jinja macros
+├─ tests/                   # custom data tests
+└─ analyses/               # ad‑hoc queries (not materialized)
+</code></pre>
+<h3>dbt_project.yml example</h3>
+<pre><code>name: my_dbt_project
+version: "1.0"
+config-version: 2
+profile: my_profile
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+snapshot-paths: ["snapshots"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_modules"]
+</code></pre>
+<h2>Creating Models</h2>
+<h3>Staging model (models/staging/stg_events.sql)</h3>
+<pre><code>{{{{'{{'}} config(materialized='view') }}}
+
+with source as (
+    select * from {{{{'{{'}} source('raw', 'events') }}}
+),
+cleaned as (
+    select
+        cast(event_timestamp as timestamp) as event_timestamp,
+        user_id,
+        event_type,
+        json_extract_path_text(event_payload, 'product_id') as product_id,
+        json_extract_path_text(event_payload, 'price')::numeric as price
+    from source
+    where event_timestamp is not null
+)
+select * from cleaned
+</code></pre>
+<h3>Fact model (models/marts/fct_sales.sql)</h3>
+<pre><code>{{{{'{{'}} config(materialized='incremental', unique_key='order_id') }}}
+
+with events as (
+    select * from {{{{'{{'}} ref('stg_events') }}}
+),
+orders as (
+    select
+        event_timestamp::date as order_date,
+        user_id,
+        product_id,
+        price as order_amount,
+        generate_uuid() as order_id
+    from events
+    where event_type = 'purchase'
+)
+select * from orders
+{{% if is_incremental() %}}
+where event_timestamp > (select max(event_timestamp) from {{{{'{{'}} this }}})
+{{% endif %}}
+</code></pre>
+<h2>Testing</h2>
+<p>Add tests in <code>schema.yml</code>:</p>
+<pre><code>version: 2
+models:
+  - name: fct_sales
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: order_amount
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_product')
+              field: product_id
+</code></pre>
+<p>Run tests:</p>
+<pre><code>dbt test
+</code></pre>
+<h2>Documentation</h2>
+<p>Add doc blocks in model files:</p>
+<pre><code>{{{{'{{'}}
+    config(
+        description="Aggregated daily sales per product",
+        meta={{{{'{'}}"owner": "analytics"{{'}'}}}
+    )
+}}}}
+</code></pre>
+<p>Generate and serve docs:</p>
+<pre><code>dbt docs generate
+dbt docs serve
+</code></pre>
+<h2>Snapshots</h2>
+<pre><code>{{{{'{{'}} snapshot customer_snapshot }}}}
+{{{{'{{'}} config(
+    target_schema='snapshots',
+    unique_key='customer_id',
+    strategy='timestamp',
+    updated_at='updated_at'
+) }}}
+
+select * from {{{{'{{'}} source('raw', 'customers') }}}
+{{{{'{{'}} endsnapshot }}}}
+</code></pre>
+<h2>Macros</h2>
+<pre><code>{{{{'{{'}} macro date_dim(start_date, end_date) }}}}
+with dates as (
+    select generate_series('{{{{'{{'}} start_date }}}'::date,
+                         '{{{{'{{'}} end_date }}}'::date,
+                         interval '1 day') as date_day
+)
+select
+    date_day as date,
+    extract(isodow from date_day) as iso_weekday,
+    extract(dow from date_day) as weekday,
+    extract(day from date_day) as day,
+    extract(month from date_day) as month,
+    extract(year from date_day) as year,
+    to_char(date_day, 'YYYY-MM-DD') as date_iso
+from dates
+{{{{'{{'}} endmacro }}}}
+</code></pre>
+<h2>Running dbt in CI/CD</h2>
+<p>Example GitHub Actions workflow:</p>
+<pre><code>name: dbt CI
+on: [push, pull_request]
+jobs:
+  run-dbt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install dbt
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install "dbt-postgres==1.8.*"
+      - name: Run dbt deps
+        run: |
+          source .venv/bin/activate
+          dbt deps
+      - name: Run dbt test
+        env:
+          DBT_PROFILES_DIR: ${{{{'{{'}} github.workspace }}}
+          POSTGRES_HOST: ${{{{'{{'}} secrets.PG_HOST }}}
+          POSTGRES_USER: ${{{{'{{'}} secrets.PG_USER }}}
+          POSTGRES_PASSWORD: ${{{{'{{'}} secrets.PG_PASS }}}
+          POSTGRES_DB: ${{{{'{{'}} secrets.PG_DB }}}
+        run: |
+          source .venv/bin/activate
+          dbt test
+</code></pre>
+<h2>Advanced Topics</h2>
+<ul>
+<li>Incremental models with <code>is_incremental()</code> and <code>unique_key</code>.</li>
+<li>Exposures – document downstream BI tools.</li>
+<li>Packages – reuse community models (e.g., <code>dbt_utils</code>).</li>
+<li>dbt Cloud job scheduling, alerts, and run history.</li>
+<li>Performance profiling with <code>dbt run --profiles-dir . --target dev --vars '{"debug": true}'</code>.</li>
+</ul>
+<h2>Mini‑Lab</h2>
+<ol>
+<li>Initialize a new dbt project with <code>dbt init my_dbt_project</code>.</li>
+<li>Create a staging model <code>stg_events.sql</code> and a fact model <code>fct_sales.sql</code>.</li>
+<li>Add a seed CSV <code>seeds/region_lookup.csv</code> and reference it in a model.</li>
+<li>Write tests for primary keys and relationships.</li>
+<li>Generate docs and serve them locally.</li>
+<li>Set up a GitHub Actions workflow to run <code>dbt test</code> on each PR.</li>
+</ol>
+<h2>Resources</h2>
+<ul>
+<li>Official docs: https://docs.getdbt.com/</li>
+<li>dbt Learn (interactive tutorials): https://learn.getdbt.com/</li>
+<li>dbt Utils package: https://github.com/dbt-labs/dbt_utils</li>
+<li>Book: <em>Analytics Engineering with dbt</em> – Tristan Handy</li>
+</ul>
+<hr>
+<p><em>End of Module 18</em></p>
+        </article>
+    </main>
+    <footer>
+        Need edits? Update the Markdown file and rebuild this page.
+    </footer>
+</body>
+</html>
